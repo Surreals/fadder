@@ -1,0 +1,79 @@
+.breadcrumbsBox {
+  padding-top: 16px;
+}
+
+.toggleStylesBox {
+  background: #fff;
+  border-radius: 8px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.toggleIcon {
+  width: 14px;
+  height: 14px;
+  transition: filter 0.2s ease, transform 0.2s ease;
+  filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(0%) hue-rotate(169deg) brightness(88%) contrast(85%);
+}
+
+.active {
+  filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(1017%) hue-rotate(195deg) brightness(96%) contrast(95%);
+}
+
+.filterSection {
+  min-width: 400px;
+  width: 100%;
+  background: #fff;
+  padding: 8px 14px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.filterSectionText {
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.filterSectionTextSecond {
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.filterSectionRight {
+  min-width: 150px;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.filterSectionResult {
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.arrowIcon {
+  height: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: brightness(0);
+
+}
+
+.open {
+  transform: rotate(180deg);
+}

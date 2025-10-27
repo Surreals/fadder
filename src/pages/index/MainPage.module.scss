@@ -1,0 +1,78 @@
+.container {
+  padding: 40px 20px;
+  background-color: var(--Gray);
+  min-height: 50vh;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--Text-Black);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background-color: var(--White);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.cardTitle {
+  color: var(--Accented);
+  margin-bottom: 15px;
+}
+
+.ctaSection {
+  background-color: var(--White);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.ctaTitle {
+  color: var(--Text-Black);
+  margin-bottom: 20px;
+}
+
+.ctaText {
+  color: var(--Text-Black);
+  margin-bottom: 30px;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  color: var(--White);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.badgeCopart {
+  background-color: var(--Text-Accented-BLUE);
+}
+
+.badgeIAAI {
+  background-color: var(--Text-Orange);
+}

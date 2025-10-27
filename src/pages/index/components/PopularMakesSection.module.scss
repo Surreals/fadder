@@ -1,0 +1,129 @@
+.popularMakesSection {
+  padding-bottom: 74px;
+}
+
+.title {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.viewAllBtn,
+.moreMakesBtn {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  padding: 0;
+  
+  &:hover {
+    color: #ff6b35;
+  }
+}
+
+.brandName {
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+
+.carCount {
+  color: var(--Text-Dark-gray, #7B7B7B);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+
+.brandsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.brandCard {
+  border-radius: 16px;
+  background: var(--White, #FFF);
+  padding: 12px;
+}
+
+.toggleSection {
+  align-items: center;
+}
+
+
+
+
+@media (max-width: 1024px) {
+
+  .brandsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+
+  
+  .headerButtons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .brandsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+  
+  .brandCard .ant-card-body {
+    padding: 20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .brandsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  
+  .brandCard .ant-card-body {
+    padding: 16px;
+  }
+
+  .toggleSection {
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+  }
+
+}
+
+@media (max-width: 360px) {
+  .sectionHeader h2 {
+    font-size: 1.5rem;
+  }
+  
+  .brandsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+  }
+  
+  .brandCard .ant-card-body {
+    padding: 12px;
+  }
+
+
+}

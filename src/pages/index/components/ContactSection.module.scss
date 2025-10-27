@@ -1,0 +1,156 @@
+.contactSection {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding-bottom: 74px;
+}
+
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+
+.title {
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.subtitle {
+  max-width: 430px;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.form {
+  width: 100%;
+  max-width: 520px;
+}
+
+.formItem {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.leftBlock {
+  padding: 40px;
+}
+
+:global(.ant-input),
+:global(.ant-input-textarea) {
+  border-radius: 8px !important;
+  border: none !important;
+  background: #f5f6f8 !important;
+  font-size: 14px !important;
+  color: #1f2937 !important;
+  padding: 12px 16px !important;
+  box-shadow: none !important;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.buttons {
+  margin-top: 16px;
+}
+
+.btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary {
+  background: #f4a624;
+  border: 1px solid #f4a624;
+  color: #0f0f0f;
+
+  &:hover {
+    background: #ffbd38;
+    border-color: #ffbd38;
+  }
+}
+
+.btnOutline {
+  background: #fff;
+  border: 2px solid #f4a624;
+  color: #0f0f0f;
+
+  &:hover {
+    background: #fffaf0;
+    border-color: #ffbd38;
+  }
+}
+
+.imageBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 535px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .card {
+    gap: 32px;
+    padding: 24px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 790px) {
+  .imageBlock {
+    display: none;
+  }
+
+  .leftBlock {
+    width: 100%;
+    padding: 0;
+  }
+
+  .form {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 16px;
+    line-height: 30px;
+  }
+
+  .card {
+    gap: 32px;
+    padding: 8px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+}

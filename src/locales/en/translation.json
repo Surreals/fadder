@@ -1,0 +1,24 @@
+{
+  "header": {
+    "delivery": "Delivery",
+    "terms": "Terms",
+    "help": "Help",
+    "about": "About",
+    "information": "Information",
+    "login": "Login",
+    "register": "Register"
+  },
+  "main": {
+    "title": "Welcome to Our Vehicle Search Platform",
+    "wideSelection": "Wide Selection",
+    "wideSelectionDesc": "Browse through thousands of vehicles from various auctions and dealers worldwide.",
+    "globalShipping": "Global Shipping",
+    "globalShippingDesc": "We handle the entire shipping process from the auction to your destination.",
+    "securePayment": "Secure Payment",
+    "securePaymentDesc": "Safe and secure payment processing with multiple payment options available.",
+    "ctaTitle": "Ready to Find Your Next Vehicle?",
+    "ctaText": "Use our powerful search form above to find the perfect vehicle for your needs. Filter by type, make, model, price range, and more to narrow down your search.",
+    "copartAuctions": "Copart Auctions",
+    "iaaiAuctions": "IAAI Auctions"
+  }
+}

@@ -1,0 +1,63 @@
+.sectionHorizontalScrollAutoSection {
+  padding: 20px 0 74px 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto 32px;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #222222;
+  letter-spacing: -0.02em;
+}
+
+.viewAllBtn {
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: var(--White, #FFF);
+}
+
+.title {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+
+.viewAllBtn:hover {
+  color: #f4a624;
+}
+
+.carouselContainer {
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 16px 0 0 0;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+

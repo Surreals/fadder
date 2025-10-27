@@ -1,0 +1,41 @@
+.customSelect :global(.ant-select-selector) {
+  padding: var(--select-padding, 8px 14px)!important;
+  border-radius: 8px !important;
+  background: var(--select-bg-color, #f5f6f8) !important; // 🔹 ось тут змінено
+  border: none !important;
+
+  min-height: var(--select-height, 40px);
+  height: var(--select-height, 40px);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: var(--select-font-size, 12px);
+  color: var(--select-color, #7B7B7B);
+  font-weight: var(--select-font-weight, 400);
+  line-height: var(--select-line-height, 14px);
+}
+
+.customSelect
+:global(.ant-select-selection-placeholder),
+.customSelect
+:global(.ant-select-selection-item) {
+  font-size: var(--select-font-size, 12px);
+  color: var(--select-color, #7B7B7B);
+  font-weight: var(--select-font-weight, 400);
+  line-height: var(--select-line-height, 14px);
+}
+
+.customSelect {
+  :global(.ant-select-selector:hover) {
+    background: #cccccc !important;
+  }
+}
+
+.customSelect :global(.ant-select-focused .ant-select-selector),
+.customSelect :global(.ant-select-selector:focus),
+.customSelect :global(.ant-select-selector:focus-within) {
+  box-shadow: none !important;
+  border: none !important;
+}

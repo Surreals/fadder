@@ -1,0 +1,35 @@
+.button {
+  display: flex;
+  padding: 10px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.primary {
+  background: var(--Accented, #FFAF0E);
+  
+  &:hover {
+    background: var(--Button-Hover, #FFBF3E);
+  }
+}
+
+.secondary {
+  background: var(--Gray, #F5F6F8);
+  
+  &:hover {
+    background: var(--Hover-Buttons, #CCC);
+  }
+}

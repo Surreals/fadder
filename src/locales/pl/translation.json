@@ -1,0 +1,24 @@
+{
+  "header": {
+    "delivery": "Dostawa",
+    "terms": "Warunki",
+    "help": "Pomoc",
+    "about": "O nas",
+    "information": "Informacje",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się"
+  },
+  "main": {
+    "title": "Witamy na naszej platformie wyszukiwania pojazdów",
+    "wideSelection": "Szeroki wybór",
+    "wideSelectionDesc": "Przeglądaj tysiące pojazdów z różnych aukcji i dealerów na całym świecie.",
+    "globalShipping": "Globalna wysyłka",
+    "globalShippingDesc": "Zajmujemy się całym procesem wysyłki od aukcji do miejsca docelowego.",
+    "securePayment": "Bezpieczna płatność",
+    "securePaymentDesc": "Bezpieczne i bezpieczne przetwarzanie płatności z wieloma opcjami płatności.",
+    "ctaTitle": "Gotowy na znalezienie następnego pojazdu?",
+    "ctaText": "Użyj naszego potężnego formularza wyszukiwania powyżej, aby znaleźć idealny pojazd dla swoich potrzeb. Filtruj według typu, marki, modelu, zakresu cen i więcej, aby zawęzić wyszukiwanie.",
+    "copartAuctions": "Aukcje Copart",
+    "iaaiAuctions": "Aukcje IAAI"
+  }
+}
