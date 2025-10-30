@@ -1,5 +1,16 @@
-.breadcrumbsBox {
+
+
+.filtersWrapper {
+  padding-bottom: 225px;
+}
+
+.resultsWrapper {
+  padding-top: 25px;
+}
+
+.searchPage {
   padding-top: 16px;
+  padding-bottom: 248px;
 }
 
 .toggleStylesBox {
@@ -30,6 +41,10 @@
   padding: 8px 14px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+}
+
+.isOpenFilter {
+  border-bottom-left-radius: 0;
 }
 
 .filterSectionText {

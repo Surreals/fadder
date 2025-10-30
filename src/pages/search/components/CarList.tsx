@@ -4,8 +4,9 @@ import Flex from "@components/Flex";
 import CarCard, { CarData } from "./CarCard";
 
 import styles from "./CarList.module.scss";
+import CardAuto from "@pages/index/components/CardAuto";
 
-const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
+export const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
   id: i + 1,
   year: 1981,
   make: "Chevrolet",
@@ -18,44 +19,33 @@ const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
   isAvailable: true,
   auction: i % 2 === 0 ? "Copart" : "IAAI",
   currentBid: "$725",
-  imageUrl:
-    "https://via.placeholder.com/640x360.png?text=Car+Image",
+  imageUrl: "https://via.placeholder.com/640x360.png?text=Car+Image",
   timer: "1 d 21 h 23 min 00 sec",
 }));
 
-export default function CarList() {
+export default function CarList({ view }) {
   const [page, setPage] = useState(2);
   const totalPages = 127;
 
   const carsToRender = MOCK_CARS;
 
   return (
-    <Flex vertical gap={24} className={styles.listWrapper}>
-      <Flex vertical gap={16}>
-        {carsToRender.map((car) => (
-          <CarCard key={car.id} {...car} />
-        ))}
-      </Flex>
+    <Flex vertical gap={34} className={styles.listWrapper}>
+        {view === "list" ? (
+          <Flex vertical gap={16}>
+            {carsToRender.map((car) => (
+              <CarCard key={car.id} {...car} />
+            ))}
+          </Flex>
+        ) : (
+          <div className={styles.gridWrapper}>
+            {carsToRender.map((car) => (
+              <CardAuto key={car.id} car={car} />
+            ))}
+          </div>
+        )}
 
       <div className={styles.paginationSection}>
-        <ConfigProvider
-          theme={{
-            components: {
-              Pagination: {
-                colorPrimary: "#FFC94D",
-                colorPrimaryBorder: "#FFC94D",
-                colorPrimaryHover: "#FFC94D",
-                borderRadius: 12,
-                itemActiveBg: "#FFC94D",
-                itemSize: 44,
-                itemBg: "#FFFFFF",
-                itemActiveColor: "#0F0F0F",
-                colorText: "#0F0F0F",
-                colorTextDisabled: "#7B7B7B",
-              },
-            },
-          }}
-        >
           <Pagination
             className={styles.pagination}
             current={page}
@@ -65,12 +55,9 @@ export default function CarList() {
             onChange={(p) => setPage(p)}
             showQuickJumper={false}
           />
-        </ConfigProvider>
 
         <p className={styles.paginationDescription}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
       </div>
     </Flex>

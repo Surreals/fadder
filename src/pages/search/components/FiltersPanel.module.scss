@@ -1,7 +1,7 @@
 .panel {
-  width: 280px;
-  min-width: 280px;
-  max-width: 280px;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -9,10 +9,16 @@
 
 .sectionCard {
   background: #ffffff;
-  border: 1px solid #D9D9D9;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
+  padding: 16px;
 }
+
+.firstSectionCard {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 
 .sectionHeader {
   cursor: pointer;
@@ -22,22 +28,26 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px 16px;
+  padding: 16px;
   border-bottom: 1px solid #EDEDED;
   background: #fff;
 }
 
 .sectionTitle {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  color: #0F0F0F;
+  line-height: 20px;
+  color: #000;
 }
 
 .sectionToggle {
-  font-size: 16px;
-  font-weight: 500;
-  color: #0F0F0F;
-  line-height: 1;
+display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggleIcon {
+  cursor: pointer;
 }
 
 .sectionBody {
@@ -77,7 +87,6 @@
   transform: translateY(-50%);
 }
 
-/* scroll list for checkboxes */
 .scrollArea {
   max-height: 180px;
   overflow-y: auto;
@@ -85,6 +94,22 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 /* range blocks (Year, Price, Odometer) */
@@ -96,7 +121,7 @@
 
 .rangeInputsRow {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   flex-wrap: nowrap;
@@ -105,34 +130,64 @@
 .rangeInput {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   background: #fff;
+  align-items: center;
 }
 
 .rangeInput label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #7B7B7B;
-  line-height: 1.2;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--Text-Dark-gray, #7B7B7B);
+}
+
+.dateFieldLabel {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--Text-Dark-gray, #7B7B7B);
 }
 
 .rangeInput input {
-  width: 100px;
-  border: 1px solid #D9D9D9;
-  border-radius: 8px;
-  background: #F5F6F8;
-  padding: 8px 10px;
-  font-size: 14px;
-  color: #0F0F0F;
+  width: 100%;
+  border-radius: 14px;
+  background: #fff;
+  height: 52px;
+  padding: 14px 16px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
+  color: var(--Text-Dark-gray, #7B7B7B);
+  font-size: 20px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  line-height: 24px;
   outline: none;
+  border: none;
 }
 
+
 .dash {
-  font-size: 16px;
-  font-weight: 500;
-  color: #0F0F0F;
-  align-self: flex-end;
-  line-height: 36px;
+padding-top: 4px;
+}
+
+.sliderUnit {
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.sliderEdgeLabel {
+  color: var(--Text-Dark-gray, #7B7B7B);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
 }
 
 .sliderPlaceholder {
@@ -151,11 +206,14 @@
 .applyBtn {
   background: #FFC94D;
   border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #0F0F0F;
+  border-radius: 14px;
+  padding: 12px 24px;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
   cursor: pointer;
   align-self: flex-start;
 }
@@ -171,6 +229,8 @@
   font-weight: 600;
   color: #0F0F0F;
 }
+
+
 
 /* location block */
 .locationRow {
@@ -220,4 +280,71 @@
   color: #0F0F0F;
   cursor: pointer;
   align-self: flex-start;
+}
+
+
+.saleDateCard {
+  background: #fff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dateFieldBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dateFieldLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--Text-Dark-gray, #7B7B7B);
+}
+
+.dateInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.datePickerStyled {
+  width: 100%;
+  border: none !important;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 14px !important;
+  height: 52px !important;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px!important;
+  background: #fff !important;
+
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 24px !important;
+  color: var(--Text-Dark-gray, #7B7B7B) !important;
+}
+
+.datePickerStyled .ant-picker-input > input::placeholder {
+  color: #7B7B7B !important;
+}
+
+.datePickerStyled.ant-picker {
+  border: none !important;
+  background: transparent !important;
+}
+
+.datePickerStyled.ant-picker-focused,
+.datePickerStyled:focus,
+.datePickerStyled:active {
+  border: none !important;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16) !important;
+}
+
+.calendarIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.6;
 }

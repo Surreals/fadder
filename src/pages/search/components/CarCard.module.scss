@@ -2,9 +2,9 @@
   display: flex;
   background: #fff;
   border-radius: 16px;
-  border: 1px solid #E1E4E8;
   overflow: hidden;
   width: 100%;
+  max-width: 1320px;
 }
 
 .imageWrapper {
@@ -27,44 +27,43 @@
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 13px;
 }
 
-/* title row */
 .title {
-  font-size: 24px;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 20px;
+  font-style: normal;
   font-weight: 700;
-  line-height: 1.2;
-  color: #0F0F0F;
+  line-height: 24px;
 }
 
-/* badges top right */
+
 .badge {
+  color: var(--Text-White, #FFF);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  padding: 4px 8px;
   border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.2;
 }
 
 .badgeActive {
-  background-color: #00A11A; /* зелений як на макеті */
+  background: var(--Text-Green, #00B333);
 }
 
 .badgeCopart {
-  background-color: #003C96; /* синій */
+  background: var(--Copart, #0E5DB8);
 }
 
 .badgeIAAI {
-  background-color: #C8102E; /* червоний для IAAI */
+  background: var(--IAAI, #D91E1D);
 }
 
-/* specs table-ish 2 columns */
 .specGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
-  border-top: 1px solid #E1E4E8;
   border-bottom: 1px solid #E1E4E8;
   column-gap: 24px;
 }
@@ -77,39 +76,41 @@
 }
 
 .specRow:nth-child(5) {
-  /* останній ряд в гріді без бордера, якщо хочеш прибрати */
   border-bottom: none;
 }
 
 .specLabel {
-  font-size: 16px;
+  color: var(--Text-Dark-gray, #7B7B7B);
+  font-size: 14px;
+  font-style: normal;
   font-weight: 400;
-  color: #7B7B7B;
-  line-height: 1.4;
+  line-height: 16px;
 }
 
 .specValue {
-  font-size: 16px;
-  font-weight: 600;
-  color: #0F0F0F;
-  line-height: 1.4;
-  text-align: right;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
 }
 
-/* bottom row */
 .bottomRow {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   flex-wrap: wrap;
   row-gap: 16px;
 }
 
 .timer {
+  color: var(--Text-Green, #00B333);
+  text-align: center;
   font-size: 16px;
-  font-weight: 600;
-  color: #00A11A; /* зелений текст часу */
-  line-height: 1.4;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  display: flex;
+  align-items: end;
 }
 
 .rightActions {
@@ -123,6 +124,7 @@
   background: transparent;
   border: none;
   font-size: 20px;
+  padding: 14px;
   line-height: 1;
   cursor: pointer;
   color: #4a4a4a;
@@ -131,27 +133,22 @@
 .bidBox {
   background: #F5F6F8;
   border-radius: 12px;
-  padding: 16px 20px;
-  min-width: 190px;
-  border: 1px solid #E1E4E8;
-
+  height: 52px;
+  padding: 16px 32px;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .bidLabel {
-  font-size: 18px;
-  font-weight: 500;
-  color: #0F0F0F;
-  line-height: 1.3;
-  white-space: nowrap;
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
 
-.bidValue {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0F0F0F;
-  line-height: 1.3;
-}
+

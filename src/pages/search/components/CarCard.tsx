@@ -1,10 +1,13 @@
 import React from "react";
+
 import Flex from "@components/Flex";
+import hardIcon from '@assets/icons/hardIcon.svg'
+
 import styles from "./CarCard.module.scss";
 
 export interface CarData {
-  id: string | number;
-  year: string | number;
+  id: number;
+  year: number;
   make: string;
   model: string;
   odometer: string;
@@ -14,12 +17,13 @@ export interface CarData {
   driveType: string;
   isAvailable: boolean;
   auction: "Copart" | "IAAI";
-  currentBid: string;
+  currentBid: string; // з $
   imageUrl: string;
   timer: string;
 }
 
 export default function CarCard({
+                                  id,
                                   year,
                                   make,
                                   model,
@@ -34,8 +38,12 @@ export default function CarCard({
                                   imageUrl,
                                   timer,
                                 }: CarData) {
+  const handleCardClick = () => {
+    window.location.href = `/search/${id}`;
+  };
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <div className={styles.imageWrapper}>
         <img src={imageUrl} alt={`${year} ${make} ${model}`} className={styles.image} />
       </div>
@@ -88,14 +96,21 @@ export default function CarCard({
         <div className={styles.bottomRow}>
           <div className={styles.timer}>{timer}</div>
 
-          <Flex alignItems="center" gap={16} className={styles.rightActions}>
-            <button className={styles.favoriteBtn} aria-label="add to favorites">
-              ♡
+          <Flex alignItems="center" gap={8} className={styles.rightActions}>
+            <button 
+              className={styles.favoriteBtn} 
+              aria-label="add to favorites"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={hardIcon}  />
             </button>
 
-            <div className={styles.bidBox}>
+            <div 
+              className={styles.bidBox}
+              onClick={(e) => e.stopPropagation()}
+            >
               <span className={styles.bidLabel}>Current Bid</span>
-              <span className={styles.bidValue}>{currentBid}</span>
+              <span className={styles.bidLabel}>{currentBid}</span>
             </div>
           </Flex>
         </div>

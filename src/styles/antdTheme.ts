@@ -31,6 +31,30 @@ export const antdTheme: ThemeConfig = {
       controlPaddingHorizontal: 24,
       controlOutline: 'none',
     },
+    Pagination: {
+      colorPrimary: "#FFAF0E",
+      colorPrimaryBorder: "#FFAF0E",
+      colorPrimaryHover: "#0F0F0F",
+      borderRadius: 12,
+      itemActiveBg: "#FFAF0E",
+      itemSize: 44,
+      itemBg: "#FFFFFF",
+      itemActiveColor: "#0F0F0F",
+      colorText: "#0F0F0F",
+      colorTextDisabled: "#7B7B7B",
+    },
+    DatePicker: {
+      controlHeight: 52,
+      borderRadius: 14,
+      paddingInline: 16,
+      fontSize: 20,
+      colorTextPlaceholder: "#7B7B7B",
+      colorText: "#0F0F0F",
+      colorBorder: "transparent",
+      colorBgContainer: "#fff",
+      boxShadow:
+        "0 0 8px 0 rgba(0, 0, 0, 0.12)",
+    },
   },
 };
 

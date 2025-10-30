@@ -1,0 +1,463 @@
+.carDetailPage {
+  background: transparent;
+}
+
+.breadcrumbsBox {
+  width: 100%;
+}
+
+.pageTitleRow {
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  color: #000;
+}
+
+.auctionBadge {
+  background: #0E5DB8;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+/* GRID LAYOUT основного контенту */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 360px;
+  gap: 16px;
+  background: #f7f8fa;
+  border-radius: 8px;
+  padding: 16px;
+  align-items: start;
+}
+
+/* LEFT COLUMN */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mainImageBox {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.thumbList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.thumbItem {
+  border-radius: 6px;
+  border: 1px solid #bfbfbf;
+  background: #fff;
+  overflow: hidden;
+  width: 112px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbActive {
+  border: 2px solid #000;
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+/* MIDDLE COLUMN */
+.middleCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.saleInfoTop {
+  font-size: 12px;
+  line-height: 16px;
+  color: #000;
+  background: transparent;
+  padding: 0 4px;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.saleInfoLabel {
+  color: #999;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.saleInfoValue {
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.specCard {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.specList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.specRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+  padding: 10px 12px;
+  border-bottom: 1px solid #efefef;
+}
+
+.specRow:last-child {
+  border-bottom: none;
+}
+
+.specLabel {
+  color: #5c5c5c;
+}
+
+.specValue {
+  color: #000;
+  text-align: right;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* RIGHT COLUMN */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* BID CARD */
+.bidCard {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bidHeaderRow {
+  width: 100%;
+}
+
+.bidHeaderLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.bidHeaderTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  line-height: 16px;
+}
+
+.bidTimer {
+  color: #008a00;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.bidCurrentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bidCurrentLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  line-height: 16px;
+}
+
+.bidCurrentValue {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #000;
+}
+
+/* bid input groups */
+.bidInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bidInputHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+.iconInfo {
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #bfbfbf;
+  color: #555;
+  cursor: default;
+}
+
+/* input row */
+.bidInputRow {
+  display: flex;
+  align-items: stretch;
+  background: #f5f5f5;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  overflow: hidden;
+}
+
+.bidMinus,
+.bidPlus {
+  width: 32px;
+  min-width: 32px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  color: #000;
+}
+
+.bidInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  outline: none;
+}
+
+/* tiebreaker */
+.tiebreakerRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tiebreakerCheckbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.tiebreakerTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tiebreakerLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  line-height: 16px;
+}
+
+.tiebreakerNote {
+  font-size: 12px;
+  line-height: 16px;
+  color: #555;
+}
+
+/* bid now button */
+.bidNowBtn {
+  width: 100%;
+  height: 44px;
+  background: #5b5b5b;
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+/* links row */
+.bidLinksRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 8px;
+  column-gap: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000;
+}
+
+.bidLink {
+  background: none;
+  border: none;
+  color: #000;
+  padding: 0;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.legalNote {
+  font-size: 12px;
+  line-height: 16px;
+  color: #555;
+}
+
+.learnMore {
+  background: none;
+  border: none;
+  color: #000;
+  padding-left: 4px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* HISTORY CARD */
+.historyCard {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historyHeaderRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.historyTitle {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #000;
+}
+
+.historyIcon {
+  font-size: 18px;
+  line-height: 18px;
+  color: #555;
+}
+
+.historyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.historyRow {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #efefef;
+  padding: 12px 0;
+}
+
+.historyRow:first-child {
+  border-top: none;
+}
+
+.historyLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.historyUser {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+.historyTime {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999;
+}
+
+.historyAmount {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* responsive */
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rightCol {
+    grid-column: 1 / span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .rightCol {
+    grid-column: auto;
+  }
+}

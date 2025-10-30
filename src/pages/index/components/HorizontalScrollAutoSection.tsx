@@ -19,112 +19,23 @@ interface CarData {
   isAvailable: boolean;
 }
 
-const mockCars: CarData[] = [
-  {
-    id: '1',
-    year: 1980,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$7,200',
-    location: 'Houston, TX',
-    auction: 'Copart',
-    driveType: 'RWD',
-    damage: 'Front End',
-    isNew: true,
-    isAvailable: true
-  },
-  {
-    id: '2',
-    year: 1983,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$8,500',
-    location: 'Miami, FL',
-    auction: 'IAAI',
-    driveType: 'RWD',
-    damage: 'Minor',
-    isNew: true,
-    isAvailable: true
-  },
-  {
-    id: '3',
-    year: 1980,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: 'N/A',
-    location: 'Los Angeles, CA',
-    auction: 'Copart',
-    driveType: 'RWD',
-    damage: 'Side Impact',
-    isNew: false,
-    isAvailable: false
-  },
-  {
-    id: '4',
-    year: 1981,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$6,800',
-    location: 'Dallas, TX',
-    auction: 'IAAI',
-    driveType: 'RWD',
-    damage: 'Hail',
-    isNew: true,
-    isAvailable: true
-  },
-  {
-    id: '5',
-    year: 1982,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$9,200',
-    location: 'Phoenix, AZ',
-    auction: 'Copart',
-    driveType: 'RWD',
-    damage: 'None',
-    isNew: false,
-    isAvailable: true
-  },
-  {
-    id: '6',
-    year: 1982,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$9,200',
-    location: 'Phoenix, AZ',
-    auction: 'Copart',
-    driveType: 'RWD',
-    damage: 'None',
-    isNew: false,
-    isAvailable: true
-  },
-  {
-    id: '7',
-    year: 1982,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$9,200',
-    location: 'Phoenix, AZ',
-    auction: 'Copart',
-    driveType: 'RWD',
-    damage: 'None',
-    isNew: false,
-    isAvailable: true
-  },
-  {
-    id: '8',
-    year: 1982,
-    make: 'Chevrolet',
-    model: 'Corvette',
-    currentBid: '$9,200',
-    location: 'Phoenix, AZ',
-    auction: 'Copart',
-    driveType: 'RWD',
-    damage: 'None',
-    isNew: false,
-    isAvailable: true
-  }
-];
+
+const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
+  id: i + 1,
+  year: 1981,
+  make: "Chevrolet",
+  model: "Corvette",
+  odometer: "25 145 mi (40 467 km)",
+  engine: "5.7L, V8",
+  transmission: "Automatic",
+  fuelType: "Gasoline",
+  driveType: "Rear wheel drive",
+  isAvailable: true,
+  auction: i % 2 === 0 ? "Copart" : "IAAI",
+  currentBid: "$725",
+  imageUrl: "https://via.placeholder.com/640x360.png?text=Car+Image",
+  timer: "1 d 21 h 23 min 00 sec",
+}));
 
 export default function HorizontalScrollAutoSection({
   title = '',
@@ -154,7 +65,7 @@ export default function HorizontalScrollAutoSection({
       
       <div className={styles.carouselContainer}>
         <div className={styles.carousel} id="new-arrivals-scroll">
-          {mockCars.map((car) => (
+          {MOCK_CARS.map((car) => (
             <CardAuto key={car.id} car={car} />
           ))}
         </div>

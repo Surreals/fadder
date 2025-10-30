@@ -55,18 +55,14 @@ export default function HeroSection() {
           </div>
           <Flex alignItems={'center'} className={styles.formBox} gap={16} padding={'0px 30px'}>
             <Flex alignItems={'center'} gap={24}>
-              <Flex alignItems={'center'} gap={8}>
-                <CheckboxButton/>
-                <Flex className={styles.copadrBox} >
-                  Copart
-                </Flex>
-              </Flex>
-              <Flex alignItems={'center'} gap={8}>
-                <CheckboxButton/>
-                <Flex className={styles.IAAIBox} >
-                  IAAI
-                </Flex>
-              </Flex>
+              <CheckboxButton
+                label="Copart"
+                isCopart={true}
+              />
+              <CheckboxButton
+                label="IAAI"
+                isIAAI={true}
+              />
             </Flex>
             <Button onClick={handleSearchClick}>Search Vehicles (1,999,999 results)</Button>
           </Flex>

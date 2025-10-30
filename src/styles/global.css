@@ -58,8 +58,13 @@ main {
   box-shadow: none !important;
 }
 
+:where(.css-dev-only-do-not-override-15fvb1b).ant-input-affix-wrapper {
+  font-size: 16px;
+  padding: 12px;
+}
+
 :where(.css-dev-only-do-not-override-15fvb1b).ant-input {
-  padding: 12px 24px!important;
+  font-size: 16px;
 }
 
 .ant-select-focused:where(.css-dev-only-do-not-override-15fvb1b).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
@@ -79,4 +84,13 @@ main {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+:where(.css-dev-only-do-not-override-17cyefw).ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+  border-color: #2571FF !important;
+}
+
+
+.ant-pagination .ant-pagination-item-active a {
+  color: #0F0F0F!important;
 }

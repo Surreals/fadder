@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { Slider, ConfigProvider, DatePicker } from "antd";
+
 import Flex from "@components/Flex";
-import { Slider, ConfigProvider } from "antd";
 import CheckboxButton from "@components/Checkbox/index";
-import CustomSelect from "@components/CustomSelect/CustomSelect";
+import plusIcon from "@assets/icons/plusIcon.svg";
+import minusIcon from "@assets/icons/minusIcon.svg";
+import searchIcon from '@assets/icons/search.svg';
+import calendarIcon from '@assets/icons/calendarIcon.svg';
 
 import styles from "./FiltersPanel.module.scss";
+import CustomInput from "@components/CustomInput/CustomInput";
+import CustomSlider from "@components/CustomSlider/CustomSlider";
+import CustomSelect from "@components/CustomSelect/CustomSelect";
 
 export default function FiltersPanel() {
   const [openSections, setOpenSections] = useState({
@@ -19,186 +26,332 @@ export default function FiltersPanel() {
     odometer: true,
     damage: true,
     location: true,
+    saleDate: true,
   });
+
+  const [fromDate, setFromDate] = useState<Dayjs | null>(null);
+  const [toDate, setToDate] = useState<Dayjs | null>(null);
+  const [selectFilters, setSelectFilters] = useState({
+    vehiclesOnly: true,
+    newlyAdded: false,
+    excludeUpcoming: false,
+    watchlistOnly: false,
+  });
+
+  const [auctionFilters, setAuctionFilters] = useState({
+    all: true,
+    copart: false,
+    iaai: false,
+  });
+
+  const [lotStatusFilters, setLotStatusFilters] = useState({
+    active: true,
+    sold: false,
+    upcoming: false,
+  });
+
+  const [vehicleTypeFilters, setVehicleTypeFilters] = useState({
+    atvs: true,
+    agriculture: false,
+    boats: false,
+    bus: false,
+    construction: false,
+    heavyDuty: false,
+    industrial: false,
+    jetSkis: false,
+    mediumDutyBox: false,
+    pickupTrucks: false,
+  });
+
+  const [makeFilters, setMakeFilters] = useState({
+    acura: true,
+    alfaRomeo: false,
+    aspt: false,
+    audi: false,
+    bentley: false,
+    blueBird: false,
+    bmw: false,
+    buick: false,
+    buj: false,
+    cadillac: false,
+  });
+
   const [yearRange, setYearRange] = useState<[number, number]>([1900, 2025]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
-  const [mileageRange, setMileageRange] = useState<[number, number]>([0, 250000]);
+  const [mileageRange, setMileageRange] = useState<[number, number]>([
+    0,
+    250000,
+  ]);
 
   const toggleSection = (key: keyof typeof openSections) => {
-    setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
+    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleSelectToggle = (
+    key: keyof typeof selectFilters,
+    val: boolean
+  ) => {
+    setSelectFilters((prev) => ({ ...prev, [key]: val }));
+  };
+
+  const handleAuctionToggle = (
+    key: keyof typeof auctionFilters,
+    val: boolean
+  ) => {
+    setAuctionFilters((prev) => ({ ...prev, [key]: val }));
+  };
+
+  const handleLotStatusToggle = (
+    key: keyof typeof lotStatusFilters,
+    val: boolean
+  ) => {
+    setLotStatusFilters((prev) => ({ ...prev, [key]: val }));
+  };
+
+  const handleVehicleTypeToggle = (
+    key: keyof typeof vehicleTypeFilters,
+    val: boolean
+  ) => {
+    setVehicleTypeFilters((prev) => ({ ...prev, [key]: val }));
+  };
+
+  const handleMakeToggle = (key: keyof typeof makeFilters, val: boolean) => {
+    setMakeFilters((prev) => ({ ...prev, [key]: val }));
   };
 
   return (
     <div className={styles.panel}>
-      {/* SECTION: Select */}
       <FilterSection
+        isNeedHeader={false}
+        isFirst={true}
         title="Select"
         isOpen={openSections.select}
         onToggle={() => toggleSection("select")}
       >
         <Flex vertical gap={8}>
-          <CheckboxButton defaultChecked>
-            Vehicles Only
-          </CheckboxButton>
-          <CheckboxButton>
-            Newly added vehicles
-          </CheckboxButton>
-          <CheckboxButton>
-            Exclude upcoming auction vehicles
-          </CheckboxButton>
-          <CheckboxButton>
-            Show watchlist lots only
-          </CheckboxButton>
+          <CheckboxButton
+            layout="text-left"
+            label="Vehicles Only"
+            checked={selectFilters.vehiclesOnly}
+            onCheckedChange={(val) => handleSelectToggle("vehiclesOnly", val)}
+          />
+          <CheckboxButton
+            layout="text-left"
+            label="Newly added vehicles"
+            checked={selectFilters.newlyAdded}
+            onCheckedChange={(val) => handleSelectToggle("newlyAdded", val)}
+          />
+          <CheckboxButton
+            layout="text-left"
+            label="Exclude upcoming auction vehicles"
+            checked={selectFilters.excludeUpcoming}
+            onCheckedChange={(val) => handleSelectToggle("excludeUpcoming", val)}
+          />
+          <CheckboxButton
+            layout="text-left"
+            label="Show watchlist lots only"
+            checked={selectFilters.watchlistOnly}
+            onCheckedChange={(val) => handleSelectToggle("watchlistOnly", val)}
+          />
         </Flex>
       </FilterSection>
 
-      {/* SECTION: Auction type */}
       <FilterSection
         title="Auction type"
         isOpen={openSections.auctionType}
         onToggle={() => toggleSection("auctionType")}
       >
         <Flex vertical gap={8}>
-          <CheckboxButton defaultChecked>
-            All
-          </CheckboxButton>
-          <CheckboxButton>Copart</CheckboxButton>
-          <CheckboxButton>IAAI</CheckboxButton>
+          <CheckboxButton
+            label="All"
+            checked={auctionFilters.all}
+            onCheckedChange={(val) => handleAuctionToggle("all", val)}
+          />
+          <CheckboxButton
+            isCopart={true}
+            label="Copart"
+            checked={auctionFilters.copart}
+            onCheckedChange={(val) => handleAuctionToggle("copart", val)}
+          />
+          <CheckboxButton
+            isIAAI={true}
+            label="IAAI"
+            checked={auctionFilters.iaai}
+            onCheckedChange={(val) => handleAuctionToggle("iaai", val)}
+          />
         </Flex>
       </FilterSection>
 
-      {/* SECTION: Lot status */}
-      <FilterSection
-        title="Lot status"
-        isOpen={openSections.lotStatus}
-        onToggle={() => toggleSection("lotStatus")}
-        extraRight="—"
-      >
+      <FilterSection title="Lot status" isOpen={openSections.lotStatus} onToggle={() => toggleSection("lotStatus")}>
         <Flex vertical gap={8}>
-          <CheckboxButton defaultChecked>Active</CheckboxButton>
-          <CheckboxButton>Sold</CheckboxButton>
-          <CheckboxButton>Upcoming</CheckboxButton>
+          <CheckboxButton
+            label="Active"
+            checked={lotStatusFilters.active}
+            onCheckedChange={(val) => handleLotStatusToggle("active", val)}
+          />
+          <CheckboxButton
+            label="Sold"
+            checked={lotStatusFilters.sold}
+            onCheckedChange={(val) => handleLotStatusToggle("sold", val)}
+          />
+          <CheckboxButton
+            label="Upcoming"
+            checked={lotStatusFilters.upcoming}
+            onCheckedChange={(val) => handleLotStatusToggle("upcoming", val)}
+          />
         </Flex>
       </FilterSection>
 
-      {/* SECTION: Vehicle type */}
       <FilterSection
         title="Vehicle type"
         isOpen={openSections.vehicleType}
         onToggle={() => toggleSection("vehicleType")}
       >
-        {/* Search input + чекбокси */}
-        <div className={styles.searchRow}>
-          <input
-            className={styles.searchInput}
-            placeholder="Search"
+        <Flex padding={"0 0 16px 0"}>
+          <CustomInput placeholder={"Search"} suffix={<img src={searchIcon} alt="search" className={styles.icon} />} />
+        </Flex>
+
+        {/* scrollable checkbox list */}
+        <div className={styles.scrollArea}>
+          <CheckboxButton
+            label="ATVS (11)"
+            checked={vehicleTypeFilters.atvs}
+            onCheckedChange={(val) => handleVehicleTypeToggle("atvs", val)}
           />
-          <span className={styles.searchIcon}>🔍</span>
+          <CheckboxButton
+            label="Agriculture and Farm equipment (1)"
+            checked={vehicleTypeFilters.agriculture}
+            onCheckedChange={(val) => handleVehicleTypeToggle("agriculture", val)}
+          />
+          <CheckboxButton
+            label="Boats (5)"
+            checked={vehicleTypeFilters.boats}
+            onCheckedChange={(val) => handleVehicleTypeToggle("boats", val)}
+          />
+          <CheckboxButton
+            label="Bus (5)"
+            checked={vehicleTypeFilters.bus}
+            onCheckedChange={(val) => handleVehicleTypeToggle("bus", val)}
+          />
+          <CheckboxButton
+            label="Construction equipment (1)"
+            checked={vehicleTypeFilters.construction}
+            onCheckedChange={(val) => handleVehicleTypeToggle("construction", val)}
+          />
+          <CheckboxButton
+            label="Heavy Duty Trucks (4)"
+            checked={vehicleTypeFilters.heavyDuty}
+            onCheckedChange={(val) => handleVehicleTypeToggle("heavyDuty", val)}
+          />
+          <CheckboxButton
+            label="Industrial Equipment (1)"
+            checked={vehicleTypeFilters.industrial}
+            onCheckedChange={(val) => handleVehicleTypeToggle("industrial", val)}
+          />
+          <CheckboxButton
+            label="Jet Skis (4)"
+            checked={vehicleTypeFilters.jetSkis}
+            onCheckedChange={(val) => handleVehicleTypeToggle("jetSkis", val)}
+          />
+          <CheckboxButton
+            label="Medium Duty Box Trucks (44)"
+            checked={vehicleTypeFilters.mediumDutyBox}
+            onCheckedChange={(val) => handleVehicleTypeToggle("mediumDutyBox", val)}
+          />
+          <CheckboxButton
+            label="Pickup Trucks (20)"
+            checked={vehicleTypeFilters.pickupTrucks}
+            onCheckedChange={(val) => handleVehicleTypeToggle("pickupTrucks", val)}
+          />
         </div>
+      </FilterSection>
+
+      <FilterSection title="Make" isOpen={openSections.make} onToggle={() => toggleSection("make")}>
+        <Flex padding={"0 0 16px 0"}>
+          <CustomInput placeholder={"Search"} suffix={<img src={searchIcon} alt="search" className={styles.icon} />} />
+        </Flex>
 
         <div className={styles.scrollArea}>
-          <CheckboxButton defaultChecked>
-            ATVS (11)
-          </CheckboxButton>
-          <CheckboxButton>Boats (5)</CheckboxButton>
-          <CheckboxButton>Buses (5)</CheckboxButton>
-          <CheckboxButton>Construction equipment (1)</CheckboxButton>
-          <CheckboxButton>Heavy Duty Trucks (6)</CheckboxButton>
-          {/* ...далі як на макеті */}
-        </div>
-      </FilterSection>
-
-      {/* SECTION: Make */}
-      <FilterSection
-        title="Make"
-        isOpen={openSections.make}
-        onToggle={() => toggleSection("make")}
-      >
-        <div className={styles.searchRow}>
-          <input
-            className={styles.searchInput}
-            placeholder="Search"
+          <CheckboxButton
+            label="Acura (29)"
+            checked={makeFilters.acura}
+            onCheckedChange={(val) => handleMakeToggle("acura", val)}
           />
-          <span className={styles.searchIcon}>🔍</span>
-        </div>
-
-        <div className={styles.scrollArea}>
-          <CheckboxButton defaultChecked>
-            Acura (29)
-          </CheckboxButton>
-          <CheckboxButton>Alfa Romeo (5)</CheckboxButton>
-          <CheckboxButton>Audi (73)</CheckboxButton>
-          <CheckboxButton>BMW (111)</CheckboxButton>
-          {/* ... */}
+          <CheckboxButton
+            label="Alfa Romeo (5)"
+            checked={makeFilters.alfaRomeo}
+            onCheckedChange={(val) => handleMakeToggle("alfaRomeo", val)}
+          />
+          <CheckboxButton
+            label="Aspt (1)"
+            checked={makeFilters.aspt}
+            onCheckedChange={(val) => handleMakeToggle("aspt", val)}
+          />
+          <CheckboxButton
+            label="Audi (73)"
+            checked={makeFilters.audi}
+            onCheckedChange={(val) => handleMakeToggle("audi", val)}
+          />
+          <CheckboxButton
+            label="Bentley (6)"
+            checked={makeFilters.bentley}
+            onCheckedChange={(val) => handleMakeToggle("bentley", val)}
+          />
+          <CheckboxButton
+            label="Blue Bird (4)"
+            checked={makeFilters.blueBird}
+            onCheckedChange={(val) => handleMakeToggle("blueBird", val)}
+          />
+          <CheckboxButton
+            label="BMW (111)"
+            checked={makeFilters.bmw}
+            onCheckedChange={(val) => handleMakeToggle("bmw", val)}
+          />
+          <CheckboxButton
+            label="Buick (42)"
+            checked={makeFilters.buick}
+            onCheckedChange={(val) => handleMakeToggle("buick", val)}
+          />
+          <CheckboxButton
+            label="Buj (1)"
+            checked={makeFilters.buj}
+            onCheckedChange={(val) => handleMakeToggle("buj", val)}
+          />
+          <CheckboxButton
+            label="Cadillac (40)"
+            checked={makeFilters.cadillac}
+            onCheckedChange={(val) => handleMakeToggle("cadillac", val)}
+          />
         </div>
       </FilterSection>
 
-      {/* SECTION: Model */}
-      <FilterSection
-        title="Model"
-        isOpen={openSections.model}
-        onToggle={() => toggleSection("model")}
-        extraRight="+"
-      >
-        {/* ти зможеш тут рендерити дропдауни конкретних моделей */}
-        <div className={styles.placeholderBox}>[Model filter UI]</div>
-      </FilterSection>
-
-      {/* SECTION: Year of manufacture */}
-      <FilterSection
-        title="Year of manufacture"
-        isOpen={openSections.year}
-        onToggle={() => toggleSection("year")}
-      >
+      <FilterSection title="Year of manufacture" isOpen={openSections.year} onToggle={() => toggleSection("year")}>
         <div className={styles.rangeBlock}>
           <div className={styles.rangeInputsRow}>
             <div className={styles.rangeInput}>
               <label>from</label>
-              <input
-                value={yearRange[0]}
-                readOnly
-              />
+              <input value={yearRange[0]} readOnly />
             </div>
-            <div className={styles.dash}>–</div>
+            <div className={styles.dash}>
+              <img src={minusIcon} alt={"expand"} />
+            </div>
             <div className={styles.rangeInput}>
               <label>to</label>
-              <input
-                value={yearRange[1]}
-                readOnly
-              />
+              <input value={yearRange[1]} readOnly />
             </div>
           </div>
 
-          <div className={styles.sliderHeaderRow}>
-      <span className={styles.sliderEdgeLabel}>
-        {yearRange[0]} <span className={styles.sliderUnit}>Year</span>
-      </span>
-            <span className={styles.sliderEdgeLabelRight}>
-        {yearRange[1]} <span className={styles.sliderUnit}>Year</span>
-      </span>
-          </div>
+          <Flex vertical gap={4}>
+            <Flex alignItems={'center'} justify={'space-between'}  className={styles.sliderHeaderRow}>
+            <span className={styles.sliderEdgeLabel}>
+              {yearRange[0]} <span className={styles.sliderUnit}>Year</span>
+            </span>
+              <span className={styles.sliderEdgeLabel}>
+              {yearRange[1]} <span className={styles.sliderUnit}>Year</span>
+            </span>
+            </Flex>
 
-          <ConfigProvider
-            theme={{
-              components: {
-                Slider: {
-                  railSize: 2,
-                  trackBg: '#000000',
-                  trackHoverBg: '#000000',
-                  handleColor: '#FFFFFF',
-                  handleActiveColor: '#FFFFFF',
-                  handleSize: 20,
-                  handleSizeHover: 20,
-                  handleLineWidth: 2,
-                  handleLineWidthHover: 2,
-                  handleBorderColor: '#000000',
-                  railBg: '#000000',
-                  railHoverBg: '#000000',
-                },
-              },
-            }}
-          >
-            <Slider
+            <CustomSlider
               range
               min={1900}
               max={2025}
@@ -206,13 +359,12 @@ export default function FiltersPanel() {
               onChange={(val) => setYearRange(val as [number, number])}
               className={styles.sliderStyled}
             />
-          </ConfigProvider>
+          </Flex>
+
 
           <button className={styles.applyBtn}>Apply</button>
         </div>
       </FilterSection>
-
-      {/* SECTION: Estimated price USD */}
       <FilterSection
         title="Estimated price USD"
         isOpen={openSections.price}
@@ -222,53 +374,34 @@ export default function FiltersPanel() {
           <div className={styles.rangeInputsRow}>
             <div className={styles.rangeInput}>
               <label>min</label>
-              <input
-                value={priceRange[0]}
-                readOnly
-              />
+              <input value={priceRange[0]} readOnly />
             </div>
-            <div className={styles.dash}>–</div>
+            <div className={styles.dash}>
+              <img src={minusIcon} alt="to" />
+            </div>
             <div className={styles.rangeInput}>
               <label>max</label>
-              <input
-                value={priceRange[1]}
-                readOnly
-              />
+              <input value={priceRange[1]} readOnly />
             </div>
           </div>
 
-          <div className={styles.sliderHeaderRow}>
-      <span className={styles.sliderEdgeLabel}>
-        ${priceRange[0].toLocaleString()}{" "}
-        <span className={styles.sliderUnit}>$</span>
-      </span>
-            <span className={styles.sliderEdgeLabelRight}>
-        ${priceRange[1].toLocaleString()}{" "}
-              <span className={styles.sliderUnit}>$</span>
-      </span>
-          </div>
+          <Flex vertical gap={4}>
+            <Flex
+              alignItems="center"
+              justify="space-between"
+              className={styles.sliderHeaderRow}
+            >
+        <span className={styles.sliderEdgeLabel}>
+          ${priceRange[0].toLocaleString()}
+          <span className={styles.sliderUnit}> $</span>
+        </span>
+              <span className={styles.sliderEdgeLabel}>
+          ${priceRange[1].toLocaleString()}
+                <span className={styles.sliderUnit}> $</span>
+        </span>
+            </Flex>
 
-          <ConfigProvider
-            theme={{
-              components: {
-                Slider: {
-                  railSize: 2,
-                  trackBg: '#000000',
-                  trackHoverBg: '#000000',
-                  handleColor: '#FFFFFF',
-                  handleActiveColor: '#FFFFFF',
-                  handleSize: 20,
-                  handleSizeHover: 20,
-                  handleLineWidth: 2,
-                  handleLineWidthHover: 2,
-                  handleBorderColor: '#000000',
-                  railBg: '#000000',
-                  railHoverBg: '#000000',
-                },
-              },
-            }}
-          >
-            <Slider
+            <CustomSlider
               range
               min={0}
               max={100000}
@@ -277,71 +410,50 @@ export default function FiltersPanel() {
               onChange={(val) => setPriceRange(val as [number, number])}
               className={styles.sliderStyled}
             />
-          </ConfigProvider>
+          </Flex>
 
           <button className={styles.applyBtn}>Apply</button>
         </div>
       </FilterSection>
 
 
-      {/* SECTION: Odometer */}
       <FilterSection
         title="Odometer"
         isOpen={openSections.odometer}
         onToggle={() => toggleSection("odometer")}
-        extraRight="—"
       >
         <div className={styles.rangeBlock}>
           <div className={styles.rangeInputsRow}>
             <div className={styles.rangeInput}>
               <label>min</label>
-              <input
-                value={mileageRange[0]}
-                readOnly
-              />
+              <input value={mileageRange[0]} readOnly />
             </div>
-            <div className={styles.dash}>–</div>
+            <div className={styles.dash}>
+              <img src={minusIcon} alt="to" />
+            </div>
             <div className={styles.rangeInput}>
               <label>max</label>
-              <input
-                value={mileageRange[1]}
-                readOnly
-              />
+              <input value={mileageRange[1]} readOnly />
             </div>
           </div>
 
-          <div className={styles.sliderHeaderRow}>
-      <span className={styles.sliderEdgeLabel}>
-        {mileageRange[0].toLocaleString()}{" "}
-        <span className={styles.sliderUnit}>Miles</span>
-      </span>
-            <span className={styles.sliderEdgeLabelRight}>
-        {mileageRange[1].toLocaleString()}+{" "}
-              <span className={styles.sliderUnit}>Miles</span>
-      </span>
-          </div>
+          <Flex vertical gap={4}>
+            <Flex
+              alignItems="center"
+              justify="space-between"
+              className={styles.sliderHeaderRow}
+            >
+        <span className={styles.sliderEdgeLabel}>
+          {mileageRange[0].toLocaleString()}{" "}
+          <span className={styles.sliderUnit}>Miles</span>
+        </span>
+              <span className={styles.sliderEdgeLabel}>
+          {mileageRange[1].toLocaleString()}{" "}
+                <span className={styles.sliderUnit}>Miles</span>
+        </span>
+            </Flex>
 
-          <ConfigProvider
-            theme={{
-              components: {
-                Slider: {
-                  railSize: 2,
-                  trackBg: '#000000',
-                  trackHoverBg: '#000000',
-                  handleColor: '#FFFFFF',
-                  handleActiveColor: '#FFFFFF',
-                  handleSize: 20,
-                  handleSizeHover: 20,
-                  handleLineWidth: 2,
-                  handleLineWidthHover: 2,
-                  handleBorderColor: '#000000',
-                  railBg: '#000000',
-                  railHoverBg: '#000000',
-                },
-              },
-            }}
-          >
-            <Slider
+            <CustomSlider
               range
               min={0}
               max={250000}
@@ -350,117 +462,126 @@ export default function FiltersPanel() {
               onChange={(val) => setMileageRange(val as [number, number])}
               className={styles.sliderStyled}
             />
-          </ConfigProvider>
+          </Flex>
 
           <button className={styles.applyBtn}>Apply</button>
         </div>
       </FilterSection>
-
-
-      {/* SECTION: Damage type */}
-      <FilterSection
-        title="Damage type"
-        isOpen={openSections.damage}
-        onToggle={() => toggleSection("damage")}
-      >
-        <div className={styles.searchRow}>
-          <input
-            className={styles.searchInput}
-            placeholder="Search"
-          />
-          <span className={styles.searchIcon}>🔍</span>
-        </div>
-
-        <div className={styles.scrollArea}>
-          <CheckboxButton>
-            Normal Wear (5533)
-          </CheckboxButton>
-
-          <Flex vertical gap={4} className={styles.damageSubgroup}>
-            <div className={styles.subgroupTitle}>Low Damage</div>
-            <CheckboxButton defaultChecked>
-              Hail (8,287)
-            </CheckboxButton>
-            <CheckboxButton defaultChecked>
-              Minor Dent/Scratches (10.5%)
-            </CheckboxButton>
+      <FilterSection title="Search near ZIP code" isOpen={openSections.year} onToggle={() => toggleSection("year")}>
+        <div className={styles.rangeBlock}>
+          <Flex alignItems={'center'} gap={4}>
+            <CustomInput placeholder={"Zip code"}  />
+            <CustomSelect
+              textStyle={{
+                fontSize: "16px",
+              }}
+              height={44}
+              placeholder="50 mi"
+            />
           </Flex>
-
-          <Flex vertical gap={4} className={styles.damageSubgroup}>
-            <div className={styles.subgroupTitle}>Medium - Heavy Damage</div>
-            <CheckboxButton>
-              All Over (1,753)
-            </CheckboxButton>
-            <CheckboxButton defaultChecked>
-              Biohazard/Chemical (169)
-            </CheckboxButton>
-            <CheckboxButton>
-              Burn (115)
-            </CheckboxButton>
-            {/* ... */}
-          </Flex>
+          <button className={styles.applyBtn}>Apply</button>
         </div>
       </FilterSection>
-
-      {/* SECTION: Location */}
-      <FilterSection
-        title="Location"
-        isOpen={openSections.location}
-        onToggle={() => toggleSection("location")}
-        extraRight="+"
-      >
-        <Flex vertical gap={8}>
-          <div className={styles.locationRow}>
-            <div className={styles.locationInputWrapper}>
-              <label>Search near ZIP code</label>
-              <div className={styles.locationInputs}>
-                <input className={styles.zipInput} placeholder="Zip code" />
-                <CustomSelect
-                  width={90}
-                  height={36}
-                  padding="8px 10px"
-                  bgColor="#fff"
-                  textStyle={{
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "#0F0F0F",
-                  }}
-                  placeholder="50 mi"
+      <FilterSection title="Sale date" isOpen={openSections.saleDate} onToggle={() => toggleSection("saleDate")}>
+        <div className={styles.saleDateCard}>
+          <div className={styles.dateFieldBlock}>
+            <label className={styles.dateFieldLabel}>From</label>
+              <div className={styles.dateInputWrapper}>
+                <DatePicker
+                  value={fromDate}
+                  onChange={(val) => setFromDate(val)}
+                  format="MM/DD/YYYY"
+                  placeholder="mm/dd/yyyy"
+                  allowClear={false}
+                  suffixIcon={
+                    <img
+                      src={calendarIcon}
+                      className={styles.calendarIcon}
+                      alt="calendar"
+                    />
+                  }
+                  className={styles.datePickerStyled}
                 />
               </div>
-            </div>
-            <button className={styles.searchBtn}>Search</button>
           </div>
-        </Flex>
+
+          <div className={styles.dateFieldBlock}>
+            <label className={styles.dateFieldLabel}>To</label>
+
+              <div className={styles.dateInputWrapper}>
+                <DatePicker
+                  value={toDate}
+                  onChange={(val) => setToDate(val)}
+                  format="MM/DD/YYYY"
+                  placeholder="mm/dd/yyyy"
+                  allowClear={false}
+                  suffixIcon={
+                    <img
+                      src={calendarIcon}
+                      className={styles.calendarIcon}
+                      alt="calendar"
+                    />
+                  }
+                  className={styles.datePickerStyled}
+                />
+              </div>
+          </div>
+        </div>
       </FilterSection>
+
     </div>
   );
 }
 
-
 interface SectionProps {
   title: string;
   isOpen: boolean;
+  isFirst?: boolean;
+  isNeedHeader?: boolean;
   onToggle: () => void;
   extraRight?: string;
   children: React.ReactNode;
 }
 
-function FilterSection({ title, isOpen, onToggle, extraRight, children }: SectionProps) {
+function FilterSection({
+                         title,
+                         isOpen,
+                         onToggle,
+                         isNeedHeader = true,
+                         extraRight,
+                         children,
+                         isFirst = false,
+                       }: SectionProps) {
   return (
-    <div className={styles.sectionCard}>
-      <div className={styles.sectionHeader} onClick={onToggle}>
-        <span className={styles.sectionTitle}>{title}</span>
-        <span className={styles.sectionToggle}>
-          {extraRight ?? (isOpen ? "—" : "+")}
-        </span>
-      </div>
-
-      {isOpen && (
-        <div className={styles.sectionBody}>
-          {children}
-        </div>
+    <Flex
+      vertical
+      gap={16}
+      className={`${styles.sectionCard} ${
+        isFirst ? styles.firstSectionCard : ""
+      }`}
+    >
+      {isNeedHeader && (
+        <Flex
+          alignItems={"center"}
+          justify={"space-between"}
+          onClick={onToggle}
+        >
+          <span className={styles.sectionTitle}>{title}</span>
+          <div className={styles.sectionToggle}>
+            {extraRight ? (
+              extraRight
+            ) : (
+              <img
+                src={isOpen ? minusIcon : plusIcon}
+                alt={isOpen ? "collapse" : "expand"}
+                className={styles.toggleIcon}
+              />
+            )}
+          </div>
+        </Flex>
       )}
-    </div>
+
+      {isOpen && <div>{children}</div>}
+    </Flex>
   );
 }
