@@ -2,6 +2,7 @@ import React from 'react';
 
 import CardAuto from "@pages/index/components/CardAuto";
 import Flex from "@components/Flex";
+import testFoto from '@assets/img/FotoTest.png'
 
 import styles from './HorizontalScrollAutoSection.module.scss';
 
@@ -33,7 +34,7 @@ const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
   isAvailable: true,
   auction: i % 2 === 0 ? "Copart" : "IAAI",
   currentBid: "$725",
-  imageUrl: "https://via.placeholder.com/640x360.png?text=Car+Image",
+  imageUrl: testFoto,
   timer: "1 d 21 h 23 min 00 sec",
 }));
 

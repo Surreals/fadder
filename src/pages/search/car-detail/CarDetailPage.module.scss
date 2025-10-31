@@ -1,5 +1,8 @@
 .carDetailPage {
   background: transparent;
+  padding-bottom: 168px;
+  padding-top: 16px;
+
 }
 
 .breadcrumbsBox {
@@ -11,11 +14,11 @@
 }
 
 .pageTitle {
-  margin: 0;
-  font-size: 28px;
-  line-height: 32px;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 32px;
+  font-style: normal;
   font-weight: 700;
-  color: #000;
+  line-height: 36px;
 }
 
 .auctionBadge {
@@ -28,14 +31,12 @@
   padding: 4px 8px;
 }
 
-/* GRID LAYOUT основного контенту */
 .layout {
   display: grid;
   grid-template-columns: 1fr 1fr 360px;
   gap: 16px;
   background: #f7f8fa;
   border-radius: 8px;
-  padding: 16px;
   align-items: start;
 }
 
@@ -88,7 +89,7 @@
   box-shadow: 0 0 0 2px #fff inset;
 }
 
-/* MIDDLE COLUMN */
+
 .middleCol {
   display: flex;
   flex-direction: column;
@@ -106,24 +107,26 @@
 }
 
 .saleInfoLabel {
-  color: #999;
-  font-size: 12px;
-  line-height: 16px;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .saleInfoValue {
   color: #000;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
 
 .specCard {
   background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  border-radius: 16px;
   overflow: hidden;
+  padding: 16px 0;
 }
 
 .specList {
@@ -133,13 +136,10 @@
 }
 
 .specRow {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  align-items: flex-start;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000;
-  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
   border-bottom: 1px solid #efefef;
 }
 
@@ -148,14 +148,19 @@
 }
 
 .specLabel {
-  color: #5c5c5c;
+  color: var(--Text-Dark-gray, #7B7B7B);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .specValue {
-  color: #000;
-  text-align: right;
-  font-weight: 500;
-  word-break: break-word;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
 
 /* RIGHT COLUMN */
@@ -165,17 +170,25 @@
   gap: 16px;
 }
 
-/* BID CARD */
 .bidCard {
   background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  border-radius: 16px;
   padding: 16px;
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.bidCardRow {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
 }
+
 
 .bidHeaderRow {
   width: 100%;
@@ -187,23 +200,26 @@
 }
 
 .bidHeaderTitle {
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
-  line-height: 16px;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .bidTimer {
-  color: #008a00;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 14px;
+  color: var(--Text-Green, #00B333);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
 
 .bidCurrentBlock {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 24px;
 }
 
 .bidCurrentLabel {
@@ -214,10 +230,11 @@
 }
 
 .bidCurrentValue {
-  font-size: 24px;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 32px;
+  font-style: normal;
   font-weight: 700;
-  line-height: 28px;
-  color: #000;
+  line-height: 36px;
 }
 
 /* bid input groups */
@@ -230,10 +247,11 @@
 .bidInputHeader {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
-  line-height: 16px;
   color: #000;
-  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .iconInfo {
@@ -252,23 +270,18 @@
 .bidInputRow {
   display: flex;
   align-items: stretch;
-  background: #f5f5f5;
-  border-radius: 6px;
-  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: var(--Text-White, #FFF);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
   overflow: hidden;
 }
 
 .bidMinus,
 .bidPlus {
-  width: 32px;
-  min-width: 32px;
   border: none;
   background: transparent;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1;
   cursor: pointer;
-  color: #000;
 }
 
 .bidInput {
@@ -302,16 +315,25 @@
 }
 
 .tiebreakerLabel {
-  font-size: 14px;
-  font-weight: 600;
   color: #000;
-  line-height: 16px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
 }
 
 .tiebreakerNote {
-  font-size: 12px;
-  line-height: 16px;
-  color: #555;
+  color: var(--Text-Dark-gray, #7B7B7B);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  line-height: 20px;
+}
+
+.border {
+  height: 1px;
+  background-color: #F5F6F8;
 }
 
 /* bid now button */
@@ -331,24 +353,20 @@
 /* links row */
 .bidLinksRow {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: 8px;
-  column-gap: 8px;
-  font-size: 12px;
-  line-height: 16px;
-  color: #000;
+  align-items: center;
 }
 
 .bidLink {
-  background: none;
+  color: var(--Text-Dark-gray, #7B7B7B);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   border: none;
-  color: #000;
-  padding: 0;
-  font-size: 12px;
-  line-height: 16px;
+  background-color: transparent;
   text-decoration: underline;
-  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
 }
 
 .legalNote {
@@ -360,20 +378,19 @@
 .learnMore {
   background: none;
   border: none;
-  color: #000;
-  padding-left: 4px;
   text-decoration: underline;
   cursor: pointer;
-  font-size: 12px;
+  color: var(--Text-Dark-gray, #7B7B7B);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
-/* HISTORY CARD */
 .historyCard {
   background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-  padding: 16px;
+  border-radius: 16px;
+  padding: 16px 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -381,15 +398,17 @@
 
 .historyHeaderRow {
   width: 100%;
+  padding: 0 16px;
   display: flex;
   justify-content: space-between;
 }
 
 .historyTitle {
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 700;
   color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .historyIcon {
@@ -408,7 +427,7 @@
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #efefef;
-  padding: 12px 0;
+  padding: 12px 16px;
 }
 
 .historyRow:first-child {
@@ -422,23 +441,27 @@
 }
 
 .historyUser {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 600;
-  color: #000;
+  color: var(--Text-Black, #0F0F0F);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
 }
 
 .historyTime {
+  color: var(--Text-Dark-gray, #7B7B7B);
   font-size: 12px;
-  line-height: 16px;
-  color: #999;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
 }
 
 .historyAmount {
+  color: var(--Text-Black, #0F0F0F);
   font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
   line-height: 20px;
-  font-weight: 600;
-  color: #000;
 }
 
 /* responsive */

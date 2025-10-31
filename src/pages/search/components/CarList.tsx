@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Pagination, ConfigProvider } from "antd";
+import { Pagination } from "antd";
 import Flex from "@components/Flex";
 import CarCard, { CarData } from "./CarCard";
+import CardAuto from "@pages/index/components/CardAuto";
+import testFoto from '@assets/img/FotoTest.png'
 
 import styles from "./CarList.module.scss";
-import CardAuto from "@pages/index/components/CardAuto";
 
 export const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
   id: i + 1,
@@ -19,7 +20,7 @@ export const MOCK_CARS: CarData[] = Array.from({ length: 10 }).map((_, i) => ({
   isAvailable: true,
   auction: i % 2 === 0 ? "Copart" : "IAAI",
   currentBid: "$725",
-  imageUrl: "https://via.placeholder.com/640x360.png?text=Car+Image",
+  imageUrl: testFoto,
   timer: "1 d 21 h 23 min 00 sec",
 }));
 

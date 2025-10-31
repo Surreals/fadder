@@ -7,6 +7,6 @@ export default {
   title: "FADDER - Vehicle Search Platform",
   description: "Buying & Shipping American Automobiles - Search and find your perfect vehicle",
   extends: [vikeReact],
-  prerender: false,
+  prerender: true,
   trailingSlash: false,
 } satisfies Config;
