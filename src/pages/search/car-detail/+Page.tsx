@@ -14,14 +14,8 @@ import CopartIcon from "@components/Icon/CopartIcon";
 import CheckboxButton from "@components/Checkbox";
 import styles from "./CarDetailPage.module.scss";
 
-export default function CarDetailPage() {
-  const [id, setId] = React.useState<string>('');
-
-  React.useEffect(() => {
-    const pathParts = window.location.pathname.split('/');
-    const carId = pathParts[pathParts.length - 1];
-    setId(carId);
-  }, []);
+export default function CarDetailPage({ id }: { id?: string }) {
+  const carId = id || '';
 
   const carData = {
     title: '1982 Chevrolet Corvette',
@@ -73,7 +67,7 @@ export default function CarDetailPage() {
     <Container>
       <Flex vertical gap={24} className={styles.carDetailPage}>
         <Flex className={styles.breadcrumbsBox}>
-          <Breadcrumb firstText="Home page" secondText="Search Results" thirdText={`Car Details - ID: ${id}`} />
+          <Breadcrumb firstText="Home page" secondText="Search Results" thirdText={`Car Details - ID: ${carId}`} />
         </Flex>
         <Flex vertical gap={16}>
           <Flex alignItems={"center"} justify={"space-between"}>

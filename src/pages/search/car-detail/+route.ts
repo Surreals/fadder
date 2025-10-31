@@ -1,1 +1,1 @@
-export default '/search/:id';
+export default '/search/@id';
