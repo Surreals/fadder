@@ -1,10 +1,11 @@
 import react from "@vitejs/plugin-react";
 import vike from "vike/plugin";
+import vikePhoton from "vike-photon/plugin";
 import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-  plugins: [vike(), react()],
+  plugins: [vike(), vikePhoton(), react()],
   build: {
     target: "es2022",
   },
