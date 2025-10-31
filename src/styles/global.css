@@ -46,7 +46,7 @@ main {
 }
 
 
-:where(.css-dev-only-do-not-override-1643u4y).ant-select-single.ant-select-show-arrow .ant-select-selection-item, :where(.css-dev-only-do-not-override-1643u4y).ant-select-single.ant-select-show-arrow .ant-select-selection-search, :where(.css-dev-only-do-not-override-1643u4y).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item, :where(.css-dev-only-do-not-override-1643u4y).ant-select-single.ant-select-show-arrow .ant-select-selection-search, :where(.css-dev-only-do-not-override-1643u4y).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
   padding-inline-end: 0 !important;
 }
 
@@ -58,12 +58,12 @@ main {
   box-shadow: none !important;
 }
 
-:where(.css-dev-only-do-not-override-15fvb1b).ant-input-affix-wrapper {
+.ant-input-affix-wrapper {
   font-size: 16px;
   padding: 12px;
 }
 
-:where(.css-dev-only-do-not-override-15fvb1b).ant-input {
+.ant-input {
   font-size: 16px;
 }
 
@@ -71,11 +71,11 @@ main {
   box-shadow: none !important;
 }
 
-:where(.css-dev-only-do-not-override-17cyefw).ant-checkbox-checked .ant-checkbox-inner {
+.ant-checkbox-checked .ant-checkbox-inner {
   border-color: var(--Text-Accented-BLUE, #2571FF)!important;
 }
 
-:where(.css-dev-only-do-not-override-17cyefw).ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-inner, :where(.css-dev-only-do-not-override-17cyefw).ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-inner, :where(.css-dev-only-do-not-override-17cyefw).ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
   border-color: #7B7B7B!important;
   background-color: #fff!important;
 }
@@ -86,7 +86,7 @@ main {
   gap: 4px;
 }
 
-:where(.css-dev-only-do-not-override-17cyefw).ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+.ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
   border-color: #2571FF !important;
 }
 

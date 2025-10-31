@@ -1,0 +1,30 @@
+.radioGroupContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.radioLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f0f0f;
+}
+
+.radioGroup {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.radioItem {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0f0f0f;
+
+  :global(.ant-radio-inner) {
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+  }
+
+}

@@ -1,0 +1,55 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  color: #000;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.chips {
+ gap: 16px;
+}
+
+.chip {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  transition: transform .06s ease, box-shadow .15s ease, background .15s ease;
+
+  &:hover {
+    background: #fbfbfb;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.active {
+  background: #0f62fe0d;
+  color: #0f0f0f;
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 22px; }
+  .chip  { font-size: 14px; padding: 8px 14px; }
+}

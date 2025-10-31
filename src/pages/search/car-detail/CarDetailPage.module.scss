@@ -2,7 +2,6 @@
   background: transparent;
   padding-bottom: 168px;
   padding-top: 16px;
-
 }
 
 .breadcrumbsBox {
@@ -33,7 +32,7 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 1fr 1fr 360px;
+  grid-template-columns: 550px 1fr 1fr;
   gap: 16px;
   background: #f7f8fa;
   border-radius: 8px;
@@ -44,7 +43,7 @@
 .leftCol {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .mainImageBox {
@@ -112,6 +111,16 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+}
+
+.historyText {
+  text-align: start;
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin-right: auto;
 }
 
 .saleInfoValue {
@@ -189,6 +198,27 @@
   gap: 16px;
 }
 
+.priceHeader {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.priceRow {
+  display: flex;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #efefef;
+}
+
+.priceRowLast {
+  display: flex;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .bidHeaderRow {
   width: 100%;
@@ -322,6 +352,28 @@
   line-height: 20px;
 }
 
+.titleRed {
+  color: #F30004;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.list {
+  margin: 0;
+  padding-left: 24px;
+  list-style-type: disc;
+
+  li {
+    color: #F30004;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
 .tiebreakerNote {
   color: var(--Text-Dark-gray, #7B7B7B);
   font-size: 16px;
@@ -373,6 +425,15 @@
   font-size: 12px;
   line-height: 16px;
   color: #555;
+}
+
+.priceNote {
+  padding: 0 16px;
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
 }
 
 .learnMore {
@@ -446,6 +507,25 @@
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+}
+
+.buttonGray {
+  border: none;
+  display: flex;
+  min-width: 320px;
+  padding: 14px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  align-self: stretch;
+  border-radius: 14px;
+  background: var(--Gray, #F5F6F8);
 }
 
 .historyTime {
