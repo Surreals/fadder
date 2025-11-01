@@ -12,6 +12,61 @@
   flex-wrap: wrap;
 }
 
+.buttonWithe {
+  cursor: pointer;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: var(--White, #FFF);
+}
+
+.blackIcon {
+  filter: brightness(0) saturate(100%);
+}
+
+.buttonWitheMain {
+  cursor: pointer;
+  display: flex;
+  padding: 16px 48px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  background: var(--White, #FFF);
+
+  border: none;
+  width: 100%;
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.buttonGraySecondary {
+  cursor: pointer;
+  margin: 0 auto;
+  border-radius: 14px;
+  background: var(--Gray, #F5F6F8);
+  display: flex;
+  width: 100%;
+  padding: 14px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  max-width: 320px;
+  border: none;
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
 .pageTitle {
   color: var(--Text-Black, #0F0F0F);
   font-size: 32px;
@@ -66,11 +121,11 @@
 }
 
 .thumbItem {
-  border-radius: 6px;
+  border-radius: 16px;
   border: 1px solid #bfbfbf;
   background: #fff;
   overflow: hidden;
-  width: 112px;
+  width: 100px;
   height: 70px;
   display: flex;
   align-items: center;
@@ -185,7 +240,15 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+}
+
+.TEST {
+  border-radius: 8px;
+  background: tomato;
+  padding: 16px;
+  color: white;
+  font-weight: 700;
 }
 
 .bidCardRow {
@@ -244,6 +307,16 @@
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
+}
+
+.bidTimerRed {
+  color: var(--Text-Red, #E61F26);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+
 }
 
 .bidCurrentBlock {
@@ -526,6 +599,44 @@
   align-self: stretch;
   border-radius: 14px;
   background: var(--Gray, #F5F6F8);
+}
+
+.blueTitle {
+  color: var(--Text-Accented-BLUE, #2571FF);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.specValueGreen {
+  color: var(--Text-Green, #00B333);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.buttonYellow {
+  cursor: pointer;
+  margin: 0 auto;
+  border-radius: 14px;
+  display: flex;
+  width: 100%;
+  padding: 14px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  max-width: 320px;
+  border: none;
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  background: var(--Accented, #FFAF0E);
 }
 
 .historyTime {

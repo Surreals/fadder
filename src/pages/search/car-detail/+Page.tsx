@@ -4,9 +4,11 @@ import Container from "@components/Container/Container";
 import Breadcrumb from "@components/Breadcrumb";
 import Flex from "@components/Flex";
 import EllipseIcon from "@assets/icons/ellipse.svg"
+import HardIcon from "@assets/icons/hardIcon.svg"
 import LocationIcon from "@assets/icons/locationIcon.svg"
 import MoreInfoIcon from "@assets/icons/moreInfoIcon.svg"
 import PlusIcon from "@assets/icons/plusIcon.svg"
+import CalendarBell from "@assets/icons/calendarBell.svg"
 import MinusIcon from "@assets/icons/minusIcon.svg"
 import CotyIcon from "@assets/icons/cotyIcon.svg"
 import BellIcon from "@assets/icons/bell.svg"
@@ -26,7 +28,7 @@ export default function CarDetailPage({ id }: { id?: string }) {
   const carId = id || '';
   const [value, setValue] = useState('daily');
   const [selected, setSelected] = React.useState<string | null>(null);
-  const [testCard, setTestCard] = React.useState<boolean>(true);
+  const [testCard, setTestCard] = React.useState<boolean>(false);
 
 
   const models: ModelItem[] = [
@@ -88,37 +90,188 @@ export default function CarDetailPage({ id }: { id?: string }) {
       <Flex vertical gap={24} className={styles.carDetailPage}>
         <Flex className={styles.breadcrumbsBox}>
           <Breadcrumb firstText="Home page" secondText="Search Results" thirdText={`Car Details - ID: ${id}`} />
-          <Flex onClick={() => setTestCard((prevState) => !prevState)}>CLICK!!!!</Flex>
+          <Flex onClick={() => setTestCard((prevState) => !prevState)} className={styles.TEST}>CLICK!!!!</Flex>
         </Flex>
-        {
-          testCard ? (
-            <>
-              <Flex vertical gap={16}>
-                <Flex alignItems={"center"} justify={"space-between"}>
-                  <Flex alignItems="center" gap={8} className={styles.pageTitleRow}>
-                    <h1 className={styles.pageTitle}>{carData.title}</h1>
-                    <CopartIcon />
+        {testCard ? (
+          <>
+            <Flex vertical gap={16}>
+              <Flex alignItems={"center"} justify={"space-between"}>
+                <Flex alignItems="center" gap={8} className={styles.pageTitleRow}>
+                  <h1 className={styles.pageTitle}>{carData.title}</h1>
+                  <CopartIcon />
+                </Flex>
+                <Flex justify="space-between" className={styles.saleInfoTop}>
+                  <Flex alignItems={"center"} gap={8}>
+                    <div className={styles.saleInfoLabel}>Sale name:</div>
+                    <div className={styles.saleInfoValue}>{carData.saleName}</div>
+                    <img src={EllipseIcon} alt={"Ellipse icon"} />
                   </Flex>
-                  <Flex justify="space-between" className={styles.saleInfoTop}>
-                    <Flex alignItems={"center"} gap={8}>
-                      <div className={styles.saleInfoLabel}>Sale name:</div>
-                      <div className={styles.saleInfoValue}>{carData.saleName}</div>
-                      <img src={EllipseIcon} alt={"Ellipse icon"} />
-                    </Flex>
 
-                    <Flex alignItems={"center"} gap={8}>
-                      <div className={styles.saleInfoLabel}>Location:</div>
-                      <div className={styles.saleInfoValue}>{carData.location}</div>
-                      <img src={LocationIcon} alt={"Location icon"} />
-                    </Flex>
+                  <Flex alignItems={"center"} gap={8}>
+                    <div className={styles.saleInfoLabel}>Location:</div>
+                    <div className={styles.saleInfoValue}>{carData.location}</div>
+                    <img src={LocationIcon} alt={"Location icon"} />
                   </Flex>
                 </Flex>
-                <section className={styles.layout}>
-                  <div className={styles.leftCol}>
+              </Flex>
+              <section className={styles.layout}>
+                <div className={styles.leftCol}>
+                  <div className={styles.mainImageBox}>
+                    <img className={styles.mainImage} src={carData.mainImage} alt={carData.title} />
+                  </div>
+
+                  <div className={styles.thumbList}>
+                    {carData.thumbs.map((thumb, idx) => (
+                      <div key={idx} className={`${styles.thumbItem} ${thumb.active ? styles.thumbActive : ""}`}>
+                        <img src={TestFoto} alt={`thumb-${idx}`} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.middleCol}>
+                  <div className={styles.specCard}>
+                    <ul className={styles.specList}>
+                      {carData.specsTop.map((row, i) => (
+                        <li key={i} className={styles.specRow}>
+                          <span className={styles.specLabel}>{row.label}</span>
+
+                          {["Lot Number", "VIN"].includes(row.label) ? (
+                            <Flex alignItems="center" gap={6}>
+                              <span className={styles.specValue}>{row.value}</span>
+                              <img
+                                src={CotyIcon}
+                                alt="copy icon"
+                                className={styles.copyIcon}
+                                onClick={() => navigator.clipboard.writeText(row.value)}
+                              />
+                            </Flex>
+                          ) : (
+                            <span className={styles.specValue}>{row.value}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className={styles.specCard}>
+                    <ul className={styles.specList}>
+                      {carData.specsBottom.map((row, i) => (
+                        <li key={i} className={styles.specRow}>
+                          <span className={styles.specLabel}>{row.label}</span>
+                          <span className={styles.specValue}>{row.value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className={styles.rightCol}>
+                  <Flex justify="space-between" className={styles.bidCardRow}>
+                    <div className={styles.bidHeaderTitle}>Time left</div>
+                    <div className={styles.bidTimer}>{carData.timeLeft}</div>
+                  </Flex>
+
+                  <div className={styles.bidCard}>
+                    <div className={styles.bidCurrentBlock}>
+                      <div className={styles.bidHeaderTitle}>Current Bid</div>
+                      <div className={styles.bidCurrentValue}>{carData.currentBid}</div>
+                    </div>
+
+                    <div className={styles.bidInputGroup}>
+                      <div className={styles.bidInputHeader}>
+                        <span>Monster bid</span>
+                        <img src={MoreInfoIcon} alt={"More info icon"} />
+                      </div>
+                      <div className={styles.bidInputRow}>
+                        <button className={styles.bidMinus}>
+                          <img src={MinusIcon} />
+                        </button>
+                        <input className={styles.bidInput} defaultValue={carData.monsterBid} />
+                        <button className={styles.bidPlus}>
+                          <img src={PlusIcon} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={styles.bidInputGroup}>
+                      <div className={styles.bidInputHeader}>
+                        <span>Max bid</span>
+                        <img src={MoreInfoIcon} />
+                      </div>
+                      <div className={styles.bidInputRow}>
+                        <button className={styles.bidMinus}>
+                          <img src={MinusIcon} />
+                        </button>
+                        <input className={styles.bidInput} defaultValue={carData.monsterBid} />
+                        <button className={styles.bidPlus}>
+                          <img src={PlusIcon} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={styles.tiebreakerRow}>
+                      <CheckboxButton />
+                      <div className={styles.tiebreakerTextBlock}>
+                        <div className={styles.tiebreakerLabel}>TieBreaker</div>
+                        <div className={styles.tiebreakerNote}>
+                          If you and another bidder have the same maximum bid, the tiebreaker will automatically add one
+                          bid increment for the bidder who activated the tiebreaker first
+                        </div>
+                      </div>
+                    </div>
+
+                    <button className={styles.bidNowBtn}>Bid Now</button>
+
+                    <div className={styles.border}></div>
+
+                    <div className={styles.bidLinksRow}>
+                      <button className={styles.bidLink}>Shipping estimate</button>
+                      <button className={styles.bidLink}>Bidding increment</button>
+                      <button className={styles.bidLink}>Check estimate</button>
+                    </div>
+
+                    <Flex alignItems={"center"} gap={4} vertical>
+                      <div className={styles.tiebreakerNote}>All bids are legally binding and all sales are final.</div>
+                      <button className={styles.learnMore}>Learn more</button>
+                    </Flex>
+                  </div>
+
+                  <div className={styles.historyCard}>
+                    <Flex justify="space-between" className={styles.historyHeaderRow}>
+                      <div className={styles.historyTitle}>Bidding History</div>
+                      <div className={styles.historyIcon}>⋯</div>
+                    </Flex>
+
+                    <ul className={styles.historyList}>
+                      {carData.bidHistory.map((item, i) => (
+                        <li key={i} className={styles.historyRow}>
+                          <div className={styles.historyLeft}>
+                            <div className={styles.historyUser}>{item.user}</div>
+                            <div className={styles.historyTime}>{item.timeAgo}</div>
+                          </div>
+                          <div className={styles.historyAmount}>{item.amount}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </Flex>
+          </>
+        ) : (
+          <>
+            <Flex vertical gap={16}>
+              <Flex alignItems="center" gap={8} className={styles.pageTitleRow}>
+                <h1 className={styles.pageTitle}>{carData.title}</h1>
+                <CopartIcon />
+              </Flex>
+              <section className={styles.layout}>
+                <div className={styles.leftCol}>
+                  <Flex vertical gap={16}>
                     <div className={styles.mainImageBox}>
                       <img className={styles.mainImage} src={carData.mainImage} alt={carData.title} />
                     </div>
-
                     <div className={styles.thumbList}>
                       {carData.thumbs.map((thumb, idx) => (
                         <div key={idx} className={`${styles.thumbItem} ${thumb.active ? styles.thumbActive : ""}`}>
@@ -126,414 +279,233 @@ export default function CarDetailPage({ id }: { id?: string }) {
                         </div>
                       ))}
                     </div>
-                  </div>
-
-                  <div className={styles.middleCol}>
-                    <div className={styles.specCard}>
-                      <ul className={styles.specList}>
-                        {carData.specsTop.map((row, i) => (
-                          <li key={i} className={styles.specRow}>
-                            <span className={styles.specLabel}>{row.label}</span>
-
-                            {["Lot Number", "VIN"].includes(row.label) ? (
-                              <Flex alignItems="center" gap={6}>
-                                <span className={styles.specValue}>{row.value}</span>
-                                <img
-                                  src={CotyIcon}
-                                  alt="copy icon"
-                                  className={styles.copyIcon}
-                                  onClick={() => navigator.clipboard.writeText(row.value)}
-                                />
-                              </Flex>
-                            ) : (
-                              <span className={styles.specValue}>{row.value}</span>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className={styles.specCard}>
-                      <ul className={styles.specList}>
-                        {carData.specsBottom.map((row, i) => (
-                          <li key={i} className={styles.specRow}>
-                            <span className={styles.specLabel}>{row.label}</span>
-                            <span className={styles.specValue}>{row.value}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className={styles.rightCol}>
-                    <Flex justify="space-between" className={styles.bidCardRow}>
-                      <div className={styles.bidHeaderTitle}>Time left</div>
-                      <div className={styles.bidTimer}>{carData.timeLeft}</div>
-                    </Flex>
-
-                    <div className={styles.bidCard}>
-                      <div className={styles.bidCurrentBlock}>
-                        <div className={styles.bidHeaderTitle}>Current Bid</div>
-                        <div className={styles.bidCurrentValue}>{carData.currentBid}</div>
-                      </div>
-
-                      <div className={styles.bidInputGroup}>
-                        <div className={styles.bidInputHeader}>
-                          <span>Monster bid</span>
-                          <img src={MoreInfoIcon} />
-                        </div>
-                        <div className={styles.bidInputRow}>
-                          <button className={styles.bidMinus}>
-                            <img src={MinusIcon} />
-                          </button>
-                          <input className={styles.bidInput} defaultValue={carData.monsterBid} />
-                          <button className={styles.bidPlus}>
-                            <img src={PlusIcon} />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className={styles.bidInputGroup}>
-                        <div className={styles.bidInputHeader}>
-                          <span>Max bid</span>
-                          <img src={MoreInfoIcon} />
-                        </div>
-                        <div className={styles.bidInputRow}>
-                          <button className={styles.bidMinus}>
-                            <img src={MinusIcon} />
-                          </button>
-                          <input className={styles.bidInput} defaultValue={carData.monsterBid} />
-                          <button className={styles.bidPlus}>
-                            <img src={PlusIcon} />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className={styles.tiebreakerRow}>
-                        <CheckboxButton />
-                        <div className={styles.tiebreakerTextBlock}>
-                          <div className={styles.tiebreakerLabel}>TieBreaker</div>
-                          <div className={styles.tiebreakerNote}>
-                            If you and another bidder have the same maximum bid, the tiebreaker will automatically add one bid
-                            increment for the bidder who activated the tiebreaker first
-                          </div>
-                        </div>
-                      </div>
-
-                      <button className={styles.bidNowBtn}>Bid Now</button>
-
-                      <div className={styles.border}></div>
-
-                      <div className={styles.bidLinksRow}>
-                        <button className={styles.bidLink}>Shipping estimate</button>
-                        <button className={styles.bidLink}>Bidding increment</button>
-                        <button className={styles.bidLink}>Check estimate</button>
-                      </div>
-
-                      <Flex alignItems={"center"} gap={4} vertical>
-                        <div className={styles.tiebreakerNote}>All bids are legally binding and all sales are final.</div>
-                        <button className={styles.learnMore}>Learn more</button>
-                      </Flex>
-                    </div>
-
-                    <div className={styles.historyCard}>
-                      <Flex justify="space-between" className={styles.historyHeaderRow}>
-                        <div className={styles.historyTitle}>Bidding History</div>
-                        <div className={styles.historyIcon}>⋯</div>
-                      </Flex>
-
-                      <ul className={styles.historyList}>
-                        {carData.bidHistory.map((item, i) => (
-                          <li key={i} className={styles.historyRow}>
-                            <div className={styles.historyLeft}>
-                              <div className={styles.historyUser}>{item.user}</div>
-                              <div className={styles.historyTime}>{item.timeAgo}</div>
-                            </div>
-                            <div className={styles.historyAmount}>{item.amount}</div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </section>
-              </Flex>
-            </>
-          ) : (
-            <>
-              <Flex vertical gap={16}>
-                <Flex alignItems={"center"} justify={"space-between"}>
-                  <Flex alignItems="center" gap={8} className={styles.pageTitleRow}>
-                    <h1 className={styles.pageTitle}>{carData.title}</h1>
-                    <CopartIcon />
                   </Flex>
-                  <Flex justify="space-between" className={styles.saleInfoTop}>
-                    <Flex alignItems={"center"} gap={8}>
-                      <div className={styles.saleInfoLabel}>Sale name:</div>
-                      <div className={styles.saleInfoValue}>{carData.saleName}</div>
-                      <img src={EllipseIcon} alt={"Ellipse icon"} />
+                  <Flex vertical className={styles.bidCardRow}>
+                    <Flex alignItems={"center"} width={"100%"} justify={"space-between"}>
+                      <span className={styles.historyTitle}>Full Car History</span>
+                      <img src={exclamationMarkIcon} />
                     </Flex>
-
-                    <Flex alignItems={"center"} gap={8}>
-                      <div className={styles.saleInfoLabel}>Location:</div>
-                      <div className={styles.saleInfoValue}>{carData.location}</div>
-                      <img src={LocationIcon} alt={"Location icon"} />
+                    <span className={styles.historyUser}>
+                      Get a comprehensive report (similar to Carfax) including accident history, service records, and
+                      more.
+                    </span>
+                    <Flex alignItems={"center"} justify={"center"}>
+                      <Button>Request Full History (Carfax)</Button>
                     </Flex>
                   </Flex>
-                </Flex>
-                <section className={styles.layout}>
-                  <div className={styles.leftCol}>
-                    <Flex vertical>
-                      <div className={styles.mainImageBox}>
-                        <img className={styles.mainImage} src={carData.mainImage} alt={carData.title} />
-                      </div>
+                  <Flex vertical className={styles.bidCardRow}>
+                    <Flex alignItems={"center"} width={"100%"} justify={"space-between"}>
+                      <span className={styles.historyTitle}>Get Alerts for Similar Vehicles</span>
+                      <img src={exclamationMarkIcon} />
+                    </Flex>
+                    <Flex vertical gap={16} width={"100%"}>
+                      <CustomInput placeholder={"Email"} />
+                      <RadioGroupCustom
+                        label="Select Frequency"
+                        options={[
+                          { label: "Daily", value: "daily" },
+                          { label: "Weekly", value: "weekly" },
+                        ]}
+                        value={value}
+                        onChange={setValue}
+                      />
+                    </Flex>
+                    <Flex alignItems={"center"} justify={"center"}>
+                      <button className={styles.buttonGray}>
+                        <img src={BellIcon} />
+                        Set Alert
+                      </button>
+                    </Flex>
+                  </Flex>
+                  <Flex vertical className={styles.bidCardRow}>
+                    <span className={styles.historyTitle}>Legal Import Restrictions</span>
+                    <div className={styles.importRestrictions}>
+                      <p className={styles.titleRed}>Potential Restrictions:</p>
+                      <ul className={styles.list}>
+                        <li>Vehicles older than 10 years may incur higher import duties in Poland.</li>
+                        <li>
+                          Salvage title vehicles require a mandatory technical inspection and re-registration process in
+                          Poland.
+                        </li>
+                        <li>Emissions standards apply to imported vehicles. This 2022 Camry meets Euro 6.</li>
+                      </ul>
+                    </div>
+                    <span className={styles.historyText}>
+                      Please consult with a local expert for definitive information.
+                    </span>
+                  </Flex>
+                </div>
 
-                      <div className={styles.thumbList}>
-                        {carData.thumbs.map((thumb, idx) => (
-                          <div key={idx} className={`${styles.thumbItem} ${thumb.active ? styles.thumbActive : ""}`}>
-                            <img src={TestFoto} alt={`thumb-${idx}`} />
-                          </div>
-                        ))}
-                      </div>
-                    </Flex>
-                    <Flex vertical className={styles.bidCardRow}>
-                      <Flex alignItems={"center"} width={"100%"} justify={"space-between"}>
-                        <span className={styles.historyTitle}>Full Car History</span>
-                        <img src={exclamationMarkIcon} />
-                      </Flex>
-                      <span className={styles.historyUser}>
-                  Get a comprehensive report (similar to Carfax) including accident history, service records, and more.
-                </span>
-                      <Flex alignItems={"center"} justify={"center"}>
-                        <Button>Request Full History (Carfax)</Button>
-                      </Flex>
-                    </Flex>
-                    <Flex vertical className={styles.bidCardRow}>
-                      <Flex alignItems={"center"} width={"100%"} justify={"space-between"}>
-                        <span className={styles.historyTitle}>Get Alerts for Similar Vehicles</span>
-                        <img src={exclamationMarkIcon} />
-                      </Flex>
-                      <Flex vertical gap={16} width={"100%"}>
-                        <CustomInput placeholder={"Email"} />
-                        <RadioGroupCustom
-                          label="Select Frequency"
-                          options={[
-                            { label: "Daily", value: "daily" },
-                            { label: "Weekly", value: "weekly" },
-                          ]}
-                          value={value}
-                          onChange={setValue}
-                        />
-                      </Flex>
-                      <Flex alignItems={"center"} justify={"center"}>
-                        <button className={styles.buttonGray}>
-                          <img src={BellIcon} />
-                          Set Alert
-                        </button>
-                      </Flex>
-                    </Flex>
-                    <Flex vertical className={styles.bidCardRow}>
-                      <span className={styles.historyTitle}>Legal Import Restrictions</span>
-                      <div className={styles.importRestrictions}>
-                        <p className={styles.titleRed}>Potential Restrictions:</p>
-                        <ul className={styles.list}>
-                          <li>Vehicles older than 10 years may incur higher import duties in Poland.</li>
-                          <li>
-                            Salvage title vehicles require a mandatory technical inspection and re-registration process in
-                            Poland.
-                          </li>
-                          <li>Emissions standards apply to imported vehicles. This 2022 Camry meets Euro 6.</li>
-                        </ul>
-                      </div>
-                      <span className={styles.historyText}>
-                  Please consult with a local expert for definitive information.
-                </span>
-                    </Flex>
-                  </div>
+                <div className={styles.middleCol}>
+                  <div className={styles.specCard}>
+                    <ul className={styles.specList}>
+                      {carData.specsTop.map((row, i) => (
+                        <li key={i} className={styles.specRow}>
+                          <span className={styles.specLabel}>{row.label}</span>
 
-                  <div className={styles.middleCol}>
-                    <div className={styles.specCard}>
-                      <ul className={styles.specList}>
-                        {carData.specsTop.map((row, i) => (
-                          <li key={i} className={styles.specRow}>
-                            <span className={styles.specLabel}>{row.label}</span>
-
-                            {["Lot Number", "VIN"].includes(row.label) ? (
-                              <Flex alignItems="center" gap={6}>
-                                <span className={styles.specValue}>{row.value}</span>
-                                <img
-                                  src={CotyIcon}
-                                  alt="copy icon"
-                                  className={styles.copyIcon}
-                                  onClick={() => navigator.clipboard.writeText(row.value)}
-                                />
-                              </Flex>
-                            ) : (
+                          {["Lot Number", "VIN"].includes(row.label) ? (
+                            <Flex alignItems="center" gap={6}>
                               <span className={styles.specValue}>{row.value}</span>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className={styles.specCard}>
-                      <ul className={styles.specList}>
-                        {carData.specsBottom.map((row, i) => (
-                          <li key={i} className={styles.specRow}>
-                            <span className={styles.specLabel}>{row.label}</span>
+                              <img
+                                src={CotyIcon}
+                                alt="copy icon"
+                                className={styles.copyIcon}
+                                onClick={() => navigator.clipboard.writeText(row.value)}
+                              />
+                            </Flex>
+                          ) : (
                             <span className={styles.specValue}>{row.value}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className={styles.specCard}>
-                      <div className={styles.priceHeader}>
-                        <h3 className={styles.historyTitle}>Final Price Calculator</h3>
-                        <img className={styles.priceInfoIcon} src={exclamationMarkIcon} alt="info" />
-                      </div>
-
-                      <div className={styles.priceRow}>
-                        <span className={styles.priceLabel}>Lot Price</span>
-                        <span className={styles.specValue}>$6,000</span>
-                      </div>
-
-                      <div className={styles.priceRow}>
-                        <span className={styles.priceLabel}>Auction Fees</span>
-                        <span className={styles.specValue}>$955</span>
-                      </div>
-
-                      <div className={styles.priceRow}>
-                        <span className={styles.priceLabel}>Trucking to port</span>
-                        <span className={styles.specValue}>$400</span>
-                      </div>
-
-                      <div className={styles.priceRow}>
-                        <span className={styles.priceLabel}>Shipping to</span>
-                        <span className={styles.specValue}>$1,595</span>
-                      </div>
-
-                      <div className={styles.priceRow}>
-                        <span className={styles.priceLabel}>BidCars Fee (+ VAT/Tax)</span>
-                        <span className={styles.specValue}>$450</span>
-                      </div>
-
-                      <div className={styles.priceRowLast}>
-                        <span className={styles.specValue}>Subtotal</span>
-                        <span className={styles.specValue}>$8,950</span>
-                      </div>
-
-                      <p className={styles.priceNote}>
-                        The calculator check location of the vehicle and shipment from one of the six ports in the USA
-                        depending on the branch location.
-                      </p>
-                      <p className={styles.priceNote}>Penalties and additional auction fees</p>
-                    </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className={styles.rightCol}>
-                    <Flex justify="space-between" className={styles.bidCardRow}>
-                      <div className={styles.bidHeaderTitle}>Time left</div>
-                      <div className={styles.bidTimer}>{carData.timeLeft}</div>
+                  <div className={styles.specCard}>
+                    <ul className={styles.specList}>
+                      {carData.specsBottom.map((row, i) => (
+                        <li key={i} className={styles.specRow}>
+                          <span className={styles.specLabel}>{row.label}</span>
+                          <span className={styles.specValue}>{row.value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={styles.specCard}>
+                    <div className={styles.priceHeader}>
+                      <h3 className={styles.historyTitle}>Final Price Calculator</h3>
+                      <img className={styles.priceInfoIcon} src={exclamationMarkIcon} alt="info" />
+                    </div>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Lot Price</span>
+                      <span className={styles.specValue}>$6,000</span>
+                    </div>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Auction Fees</span>
+                      <span className={styles.specValue}>$955</span>
+                    </div>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Trucking to port</span>
+                      <span className={styles.specValue}>$400</span>
+                    </div>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Shipping to</span>
+                      <span className={styles.specValue}>$1,595</span>
+                    </div>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>BidCars Fee (+ VAT/Tax)</span>
+                      <span className={styles.specValue}>$450</span>
+                    </div>
+
+                    <div className={styles.priceRowLast}>
+                      <span className={styles.specValue}>Subtotal</span>
+                      <span className={styles.specValue}>$8,950</span>
+                    </div>
+
+                    <p className={styles.priceNote}>
+                      The calculator check location of the vehicle and shipment from one of the six ports in the USA
+                      depending on the branch location.
+                    </p>
+                    <p className={styles.priceNote}>Penalties and additional auction fees</p>
+                  </div>
+                </div>
+
+                <div className={styles.rightCol}>
+                  <Flex alignItems={"center"} gap={16}>
+                    <Flex className={styles.buttonWithe}>
+                      <img className={styles.blackIcon} src={EllipseIcon} alt={"Ellipse icon"} />
                     </Flex>
-
+                    <Flex className={styles.buttonWithe}>
+                      <img className={styles.blackIcon} src={HardIcon} alt={"Hard icon"} />
+                    </Flex>
+                    <button className={styles.buttonWitheMain}>Ask Manager</button>
+                  </Flex>
+                  <Flex vertical gap={16} alignItems={"center"} justify={"center"} className={styles.bidCardRow}>
+                    <Flex alignItems={"center"} width={"100%"} justify={"space-between"}>
+                      <div className={styles.bidHeaderTitle}>Time left</div>
+                      <div className={styles.bidTimerRed}>{carData.timeLeft}</div>
+                    </Flex>
+                    <button className={styles.buttonGraySecondary}>
+                      <img src={CalendarBell} />
+                      Add to calendar
+                    </button>
+                  </Flex>
+                  <Flex vertical gap={8}>
                     <div className={styles.bidCard}>
-                      <div className={styles.bidCurrentBlock}>
+                      <Flex alignItems={"center"} justify={"space-between"}>
                         <div className={styles.bidHeaderTitle}>Current Bid</div>
-                        <div className={styles.bidCurrentValue}>{carData.currentBid}</div>
-                      </div>
-
-                      <div className={styles.bidInputGroup}>
-                        <div className={styles.bidInputHeader}>
-                          <span>Monster bid</span>
-                          <img src={MoreInfoIcon} />
-                        </div>
-                        <div className={styles.bidInputRow}>
-                          <button className={styles.bidMinus}>
-                            <img src={MinusIcon} />
-                          </button>
-                          <input className={styles.bidInput} defaultValue={carData.monsterBid} />
-                          <button className={styles.bidPlus}>
-                            <img src={PlusIcon} />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className={styles.bidInputGroup}>
-                        <div className={styles.bidInputHeader}>
-                          <span>Max bid</span>
-                          <img src={MoreInfoIcon} />
-                        </div>
-                        <div className={styles.bidInputRow}>
-                          <button className={styles.bidMinus}>
-                            <img src={MinusIcon} />
-                          </button>
-                          <input className={styles.bidInput} defaultValue={carData.monsterBid} />
-                          <button className={styles.bidPlus}>
-                            <img src={PlusIcon} />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className={styles.tiebreakerRow}>
-                        <CheckboxButton />
-                        <div className={styles.tiebreakerTextBlock}>
-                          <div className={styles.tiebreakerLabel}>TieBreaker</div>
-                          <div className={styles.tiebreakerNote}>
-                            If you and another bidder have the same maximum bid, the tiebreaker will automatically add one bid
-                            increment for the bidder who activated the tiebreaker first
-                          </div>
-                        </div>
-                      </div>
-
-                      <button className={styles.bidNowBtn}>Bid Now</button>
-
-                      <div className={styles.border}></div>
-
-                      <div className={styles.bidLinksRow}>
-                        <button className={styles.bidLink}>Shipping estimate</button>
-                        <button className={styles.bidLink}>Bidding increment</button>
-                        <button className={styles.bidLink}>Check estimate</button>
-                      </div>
-
-                      <Flex alignItems={"center"} gap={4} vertical>
-                        <div className={styles.tiebreakerNote}>All bids are legally binding and all sales are final.</div>
-                        <button className={styles.learnMore}>Learn more</button>
+                        <img src={MoreInfoIcon} alt={"More info icon"} />
                       </Flex>
+                      <Flex vertical gap={8}>
+                        <div className={styles.bidInputRow}>
+                          <button className={styles.bidMinus}>
+                            <img src={MinusIcon} />
+                          </button>
+                          <input className={styles.bidInput} defaultValue={carData.monsterBid} />
+                          <button className={styles.bidPlus}>
+                            <img src={PlusIcon} />
+                          </button>
+                        </div>
+                        <span className={styles.historyTime}>Enter Maximum Bid ($25 Bid Increments)</span>
+                      </Flex>
+                      <button className={styles.buttonYellow}>Bid Now</button>
+                    </div>
+                    <span className={styles.historyTime}>Enter Maximum Bid ($25 Bid Increments)</span>
+                  </Flex>
+                  <Flex vertical gap={8}>
+                    <div className={styles.bidCard}>
+                      <Flex vertical gap={16}>
+                        <Flex alignItems={"center"} justify={"space-between"}>
+                          <div className={styles.bidHeaderTitle}>Current Bid</div>
+                          <img src={MoreInfoIcon} alt={"More info icon"} />
+                        </Flex>
+                        <span className={styles.blueTitle}>$6,000 USD</span>
+                      </Flex>
+                      <button className={styles.buttonGraySecondary}>Bid Now</button>
+                    </div>
+                  </Flex>
+                  <div className={styles.specCard}>
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Auction</span>
+                      <CopartIcon />
                     </div>
 
-                    <div className={styles.historyCard}>
-                      <Flex justify="space-between" className={styles.historyHeaderRow}>
-                        <div className={styles.historyTitle}>Bidding History</div>
-                        <div className={styles.historyIcon}>⋯</div>
-                      </Flex>
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Current Bid</span>
+                      <span className={styles.specValueGreen}>$6,000</span>
+                    </div>
 
-                      <ul className={styles.historyList}>
-                        {carData.bidHistory.map((item, i) => (
-                          <li key={i} className={styles.historyRow}>
-                            <div className={styles.historyLeft}>
-                              <div className={styles.historyUser}>{item.user}</div>
-                              <div className={styles.historyTime}>{item.timeAgo}</div>
-                            </div>
-                            <div className={styles.historyAmount}>{item.amount}</div>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Bid Status</span>
+                      <span className={styles.priceLabel}>You Haven't Bid</span>
+                    </div>
+
+                    <div className={styles.priceRow}>
+                      <span className={styles.priceLabel}>Sale Status</span>
+                      <span className={styles.historyAmount}>On Minimum Bid</span>
+                    </div>
+
+                    <div className={styles.priceRowLast}>
+                      <span className={styles.priceLabel}>Sellers Reserve</span>
+                      <span className={styles.historyAmount}>Not yet met</span>
                     </div>
                   </div>
-                </section>
-              </Flex>
-              <FAQSection/>
-              <Flex vertical gap={50}>
-                <HorizontalScrollAutoSection title={'Similar Auctions'} />
-                <HorizontalScrollAutoSection title={'Recently Viewed'} />
-                <PopularModels
-                  items={models}
-                  selectedId={selected}
-                  onSelect={setSelected}
-                />
-              </Flex>
-            </>
-          )
-        }
+                </div>
+              </section>
+            </Flex>
+            <FAQSection />
+            <Flex vertical gap={50}>
+              <HorizontalScrollAutoSection title={"Similar Auctions"} />
+              <HorizontalScrollAutoSection title={"Recently Viewed"} />
+              <PopularModels items={models} selectedId={selected} onSelect={setSelected} />
+            </Flex>
+          </>
+        )}
       </Flex>
     </Container>
   );

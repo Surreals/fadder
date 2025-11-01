@@ -8,9 +8,33 @@
   padding-top: 25px;
 }
 
+.chip {
+  display: flex;
+  padding: 4px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 16px;
+  background: var(--White, #FFF);
+}
+
+.chipText {
+  color: var(--Text-Black, #0F0F0F);
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+}
+
 .searchPage {
   padding-top: 16px;
   padding-bottom: 248px;
+}
+
+.selectedChips {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .toggleStylesBox {
